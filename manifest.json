@@ -1,0 +1,15 @@
+{
+  "short_name": "budget",
+  "name": "The Budget",
+  "icons": [
+    {
+      "src": "title.svg",
+      "sizes": "64x64 32x32 16x16",
+      "type": "icon/svg"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
