@@ -11,3 +11,8 @@ Used technologies:
 - React
   - hooks
   - functional components
+- Redux
+  - toolkit
+- Firebase
+  - auth
+  - firestore
