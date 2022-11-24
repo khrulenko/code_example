@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { handleChange } from '../../../common/utils';
 import useAuth from '../../../firebase/useAuth';
 import { getUser } from '../../../redux/store';
+import { URL_AUTH_REGISTRATION } from '../../../routing/URLs';
 
 const LoginPage = () => {
   const { logIn } = useAuth();
+  const navigate = useNavigate();
 
   const user = useSelector(getUser);
   const isUserLoggedIn = !!user?.uid;
@@ -52,6 +55,13 @@ const LoginPage = () => {
             onClick={() => logIn(email, password)}
           >
             Sign in
+          </button>
+          <div>Don't have an account? Then go to registration page</div>
+          <button
+            style={{ display: 'block' }}
+            onClick={() => navigate(URL_AUTH_REGISTRATION)}
+          >
+            Go to registration
           </button>
         </>
       )}

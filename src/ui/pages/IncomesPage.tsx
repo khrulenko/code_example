@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { handleChange } from '../../../common/utils';
-import useAuth from '../../../firebase/useAuth';
-import useManageData from '../../../firebase/useManageData';
-import { getIncomes, getUser } from '../../../redux/store';
+import { Link } from 'react-router-dom';
+import { handleChange } from '../../common/utils';
+import useAuth from '../../firebase/useAuth';
+import useManageData from '../../firebase/useManageData';
+import { getIncomes, getUser } from '../../redux/store';
+import { URL_HOME } from '../../routing/URLs';
 
 const IncomesPage = () => {
   const [newAmount, newAmountSet] = useState<number>(0);
@@ -25,6 +27,10 @@ const IncomesPage = () => {
 
   return (
     <div style={style}>
+      <div style={style}>
+        <Link to={URL_HOME}>GO TO INCOMES</Link>
+      </div>
+
       <div>
         <div>{user.uid}</div>
         <div>

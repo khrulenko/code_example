@@ -1,7 +1,7 @@
 import { createUrl } from '../common/utils';
 
 //home page
-export const URL_HOME: string = 'home';
+export const URL_HOME: string = '/home';
 
 //auth
 export const URL_AUTH: string = 'auth';
