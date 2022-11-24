@@ -14,7 +14,7 @@ export interface AppUserData {
 
 export type UserData = FBUserData & AppUserData;
 
-const initialState: UserData = { uid: null, email: null, loading: false };
+const initialState: UserData = { uid: null, email: null, loading: true };
 
 const userSlice = createSlice({
   name: 'user',
