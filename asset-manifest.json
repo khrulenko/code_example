@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/thebudget/static/js/main.5eef5258.js",
+    "main.js": "/thebudget/static/js/main.d1775eb5.js",
     "index.html": "/thebudget/index.html",
-    "main.5eef5258.js.map": "/thebudget/static/js/main.5eef5258.js.map"
+    "main.d1775eb5.js.map": "/thebudget/static/js/main.d1775eb5.js.map"
   },
   "entrypoints": [
-    "static/js/main.5eef5258.js"
+    "static/js/main.d1775eb5.js"
   ]
 }
