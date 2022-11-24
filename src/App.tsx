@@ -29,12 +29,6 @@ const App = () => {
     }
   }, [isUserLoggedIn, loading]);
 
-  const location = useLocation();
-
-  console.log('---location:', location);
-  console.log('isUserLoggedIn:', isUserLoggedIn);
-  console.log('user.loading:', loading);
-
   return (
     <>
       <h1>The Budget project</h1>
