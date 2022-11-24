@@ -11,6 +11,7 @@ Used technologies:
 - React
   - hooks
   - functional components
+  - router-dom
 - Redux
   - toolkit
 - Firebase

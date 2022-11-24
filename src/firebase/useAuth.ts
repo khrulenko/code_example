@@ -15,13 +15,17 @@ import {
   endLoadingUser,
 } from '../redux/slices/userSlice';
 import { auth, db } from './firebaseInit';
+import { useNavigate } from 'react-router-dom';
+import { URL_AUTH_LOGIN, URL_HOME } from '../routing/URLs';
 
 const useAuth = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       dispatch(setUser(getUserData(user)));
+      dispatch(endLoadingUser());
     });
   }, []);
 
@@ -55,6 +59,7 @@ const useAuth = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      navigate(URL_HOME, { replace: true });
     } catch ({ code, message }) {
       console.log('-!error in logIn', code, message);
     } finally {
@@ -67,6 +72,7 @@ const useAuth = () => {
 
     try {
       signOut(auth);
+      navigate(URL_AUTH_LOGIN);
       console.log('Logged-out successfully');
     } catch ({ code, message }) {
       console.log('-!error in logOut', code, message);
