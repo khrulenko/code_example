@@ -13,8 +13,7 @@ const getCurrentISODate = () => {
   return currentDate.toISOString().split('T')[0];
 };
 
-const createUrl = (...pathes: string[]): string =>
-  pathes.reduce((acc, path) => (acc += '/' + path), '');
+const createUrl = (...pathes: string[]): string => pathes.join('/');
 
 const handleChange =
   (action: any) =>
