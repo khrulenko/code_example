@@ -2,13 +2,10 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getUser } from './redux/store';
 import useManageData from './firebase/useManageData';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { URL_AUTH_LOGIN, URL_HOME } from './routing/URLs';
 import AppRoutes from './routing/Routes';
 
 const App = () => {
-  const { uid, loading } = useSelector(getUser);
-  const navigate = useNavigate();
+  const { uid } = useSelector(getUser);
   const { listenToIncomesChanges } = useManageData();
 
   const isUserLoggedIn = !!uid;
@@ -18,16 +15,6 @@ const App = () => {
 
     return unsubscribe;
   }, [isUserLoggedIn]);
-
-  useEffect(() => {
-    if (isUserLoggedIn && !loading) {
-      navigate(URL_HOME, { replace: true });
-    }
-
-    if (!isUserLoggedIn && !loading) {
-      navigate(URL_AUTH_LOGIN, { replace: true });
-    }
-  }, [isUserLoggedIn, loading]);
 
   return (
     <>
