@@ -1,13 +1,16 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
 import useAuth from '../firebase/useAuth';
 import { getUser } from '../redux/store';
-import { URL_HOME } from '../routing/URLs';
+import { URL_INCOMES } from '../routing/URLs';
 
 const MainLayout = () => {
   const { logOut } = useAuth();
   const user = useSelector(getUser);
+
+  if (user?.loading) {
+    return <div>LOADING...</div>;
+  }
 
   return (
     <div style={{ display: 'flex' }}>
@@ -30,8 +33,8 @@ const MainLayout = () => {
             marginBottom: '20px',
           }}
         >
-          <Link to={URL_HOME}>INCOMES</Link>
-          <Link to={'not_existing_page'}>ANOTHER PAGE</Link>
+          <Link to={URL_INCOMES}>INCOMES</Link>
+          <Link to={'/not_completed_page'}>ANOTHER PAGE</Link>
         </div>
 
         <div>

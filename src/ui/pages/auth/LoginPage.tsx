@@ -20,6 +20,10 @@ const LoginPage = () => {
   const handleEmailChange = handleChange(emailSet);
   const handlePasswordChange = handleChange(passwordSet);
 
+  if (user?.loading) {
+    return <div>LOADING...</div>
+  }
+
   return (
     <div style={style}>
       <h2>Sign IN existing user</h2>

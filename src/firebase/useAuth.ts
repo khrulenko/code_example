@@ -16,7 +16,7 @@ import {
 } from '../redux/slices/userSlice';
 import { auth, db } from './firebaseInit';
 import { useNavigate } from 'react-router-dom';
-import { URL_AUTH_LOGIN, URL_HOME } from '../routing/URLs';
+import { URL_AUTH_LOGIN, URL_INCOMES } from '../routing/URLs';
 
 const useAuth = () => {
   const dispatch = useDispatch();
@@ -59,7 +59,7 @@ const useAuth = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate(URL_HOME, { replace: true });
+      navigate(URL_INCOMES, { replace: true });
     } catch ({ code, message }) {
       console.log('-!error in logIn', code, message);
     } finally {
