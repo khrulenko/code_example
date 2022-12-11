@@ -1,18 +1,14 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Button, Stack, TextField, Typography } from '@mui/material';
 import { handleChange } from '../../../common/utils';
 import useAuth from '../../../firebase/useAuth';
-import { getUser } from '../../../redux/store';
 import { URL_AUTH_REGISTRATION } from '../../../routing/URLs';
+import NoWrap from '../../components/NoWrap';
 
 const LoginPage = () => {
   const { logIn } = useAuth();
   const navigate = useNavigate();
-
-  const user = useSelector(getUser);
-  const isUserLoggedIn = !!user?.uid;
-  const style = { border: '1px solid black', margin: '20px', padding: '10px' };
 
   const [email, emailSet] = useState<string>('');
   const [password, passwordSet] = useState<string>('');
@@ -20,56 +16,49 @@ const LoginPage = () => {
   const handleEmailChange = handleChange(emailSet);
   const handlePasswordChange = handleChange(passwordSet);
 
-  if (user?.loading) {
-    return <div>LOADING...</div>
-  }
+  const goToRegistrationPage = () => navigate(URL_AUTH_REGISTRATION);
+  const onLogin = () => logIn(email, password);
+
+  const isUnableToSignIn = !email?.length || !password?.length;
 
   return (
-    <div style={style}>
-      <h2>Sign IN existing user</h2>
+    <Stack spacing={3}>
+      <Typography variant="h2" align="center">
+        Please, <NoWrap>sing in</NoWrap>
+      </Typography>
 
-      {user.loading ? (
-        <div>LOADING...</div>
-      ) : isUserLoggedIn ? (
-        <>
-          <div>
-            <div>{user.uid}</div>
-            <div>
-              <b>{user.email}</b>
-            </div>
-            <div>user has been already signed in</div>
-          </div>
-        </>
-      ) : (
-        <>
-          <input
-            style={{ display: 'block' }}
-            type="text"
-            id="logEmail"
-            onChange={handleEmailChange}
-          />
-          <input
-            style={{ display: 'block' }}
-            type="password"
-            id="logPassword"
-            onChange={handlePasswordChange}
-          />
-          <button
-            style={{ display: 'block' }}
-            onClick={() => logIn(email, password)}
-          >
-            Sign in
-          </button>
-          <div>Don't have an account? Then go to registration page</div>
-          <button
-            style={{ display: 'block' }}
-            onClick={() => navigate(URL_AUTH_REGISTRATION)}
-          >
-            Go to registration
-          </button>
-        </>
-      )}
-    </div>
+      <TextField
+        label="email"
+        id="logEmail"
+        type="email"
+        onChange={handleEmailChange}
+      />
+
+      <TextField
+        label="password"
+        id="logPassword"
+        type="password"
+        onChange={handlePasswordChange}
+      />
+
+      <Button
+        variant="contained"
+        color="primary"
+        disableElevation
+        onClick={onLogin}
+        disabled={isUnableToSignIn}
+      >
+        Sign in
+      </Button>
+
+      <Typography align="center">
+        If you don't have an account then
+        <br />
+        <Button color="primary" onClick={goToRegistrationPage}>
+          Go to registration
+        </Button>
+      </Typography>
+    </Stack>
   );
 };
 

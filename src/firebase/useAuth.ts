@@ -1,33 +1,19 @@
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { Collections } from '../common/constants';
-import { getUserData } from '../common/utils';
-import {
-  setUser,
-  startLoadingUser,
-  endLoadingUser,
-} from '../redux/slices/userSlice';
+import { startLoadingUser, endLoadingUser } from '../redux/slices/userSlice';
 import { auth, db } from './firebaseInit';
-import { useNavigate } from 'react-router-dom';
 import { URL_AUTH_LOGIN, URL_INCOMES } from '../routing/URLs';
 
 const useAuth = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      dispatch(setUser(getUserData(user)));
-      dispatch(endLoadingUser());
-    });
-  }, []);
 
   const createUser = async (newEmail: string, newPassword: string) => {
     dispatch(startLoadingUser());

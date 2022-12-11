@@ -3,17 +3,20 @@ import { Link, Outlet } from 'react-router-dom';
 import useAuth from '../firebase/useAuth';
 import { getUser } from '../redux/store';
 import { URL_INCOMES } from '../routing/URLs';
+import Loader from './components/Loader';
 
 const MainLayout = () => {
   const { logOut } = useAuth();
   const user = useSelector(getUser);
 
   if (user?.loading) {
-    return <div>LOADING...</div>;
+    return <Loader />;
   }
 
   return (
     <div style={{ display: 'flex' }}>
+      <h1>The Budget project</h1>
+
       <div
         style={{
           display: 'flex',

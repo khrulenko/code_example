@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { getUser } from '../redux/store';
+import AuthLayout from '../ui/AuthLayout';
 import MainLayout from '../ui/MainLayout';
 import LoginPage from '../ui/pages/auth/LoginPage';
 import RegistrationPage from '../ui/pages/auth/RegistrationPage';
@@ -25,7 +26,7 @@ const AppRoutes = () => {
           />
         }
       >
-        <Route path={URL_AUTH}>
+        <Route path={URL_AUTH} element={<AuthLayout />}>
           <Route index element={<Navigate to={URL_LOGIN} />} />
           <Route path={URL_LOGIN} element={<LoginPage />} />
           <Route path={URL_REGISTRATION} element={<RegistrationPage />} />
