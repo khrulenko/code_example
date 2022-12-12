@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
+import { APP_NAME } from '../common/constants';
 import useAuth from '../firebase/useAuth';
 import { getUser } from '../redux/store';
 import { URL_INCOMES } from '../routing/URLs';
@@ -15,7 +16,7 @@ const MainLayout = () => {
 
   return (
     <div style={{ display: 'flex' }}>
-      <h1>The Budget project</h1>
+      <h1>{APP_NAME}</h1>
 
       <div
         style={{

@@ -1,5 +1,7 @@
+const APP_NAME = 'The Budget';
+
 enum Collections {
   PROFILES = 'profiles',
 }
 
-export { Collections };
+export { APP_NAME, Collections };

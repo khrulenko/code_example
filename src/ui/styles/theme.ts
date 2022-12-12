@@ -1,6 +1,8 @@
 import { createTheme, ThemeOptions } from '@mui/material';
 import { teal } from '@mui/material/colors';
+import MuiButton from './MuiComponents/MuiButton';
 import MuiCssBaseline from './MuiComponents/MuiCssBaseline';
+import MuiTextField from './MuiComponents/MuiTexfield';
 import MuiTypography from './MuiComponents/MuiTypography';
 
 const theme = createTheme({
@@ -8,12 +10,14 @@ const theme = createTheme({
     primary: teal,
     secondary: teal,
     background: {
-      default: '#F5F7F9',
+      default: '#f3f3f3',
     },
   },
   components: {
     MuiCssBaseline,
     MuiTypography,
+    MuiTextField,
+    MuiButton,
   },
 } as ThemeOptions);
 

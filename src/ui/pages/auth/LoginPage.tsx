@@ -24,7 +24,7 @@ const LoginPage = () => {
   return (
     <Stack spacing={3}>
       <Typography variant="h2" align="center">
-        Please, <NoWrap>sing in</NoWrap>
+        Please, <NoWrap>sign in</NoWrap>
       </Typography>
 
       <TextField

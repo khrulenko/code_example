@@ -31,7 +31,7 @@ const RegistrationPage = () => {
   return (
     <Stack spacing={3}>
       <Typography variant="h2" align="center">
-        Please, <NoWrap>sing up</NoWrap>
+        Please, <NoWrap>sign up</NoWrap>
       </Typography>
 
       <TextField
