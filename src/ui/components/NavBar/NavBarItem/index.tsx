@@ -1,8 +1,7 @@
-import { Link, LinkProps, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   ListItemIcon,
   ListItemText,
-  ListItemTextProps,
   MenuItem,
   MenuItemProps,
   styled,
@@ -14,6 +13,7 @@ import {
   createNavBarItemTextStyles,
 } from './styles';
 import { NavBarItemData } from '..';
+import { getShouldNotForvardRule } from '../../../../common/utils';
 
 export type NavBarItemProps = {
   open?: boolean;
@@ -23,7 +23,11 @@ export type NavBarItemWrapperProps = {
   isChosen?: boolean;
 } & MenuItemProps;
 
-const NavBarItemWrapper = styled(MenuItem)(createNavBarItemWrapperStyles);
+const NavBarItemWrapper = styled(
+  MenuItem,
+  getShouldNotForvardRule('isChosen')
+)(createNavBarItemWrapperStyles);
+
 const RouterLink = styled(Link)(createRouterLinkStyles);
 const NavBarItemText = styled(ListItemText)(createNavBarItemTextStyles);
 

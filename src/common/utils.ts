@@ -21,4 +21,16 @@ const handleChange =
     action(value);
   };
 
-export { getUserData, getCurrentISODate, createUrl, handleChange };
+const getShouldNotForvardRule = (...propNames: PropertyKey[]) => {
+  return {
+    shouldForwardProp: (prop: PropertyKey) => !propNames.includes(prop),
+  };
+};
+
+export {
+  getUserData,
+  getCurrentISODate,
+  createUrl,
+  handleChange,
+  getShouldNotForvardRule,
+};
