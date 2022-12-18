@@ -13,3 +13,4 @@ export const URL_AUTH_REGISTRATION: string = createUrl(
 
 // main pathes
 export const URL_INCOMES: string = '/incomes';
+export const URL_ANALYTICS: string = '/analytics';

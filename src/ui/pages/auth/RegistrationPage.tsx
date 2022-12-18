@@ -61,7 +61,6 @@ const RegistrationPage = () => {
 
       <Button
         variant="contained"
-        color="primary"
         disableElevation
         onClick={onSignUp}
         disabled={isUnableToSignUp}
@@ -70,9 +69,7 @@ const RegistrationPage = () => {
       </Button>
 
       <Typography align="center">
-        <Button color="primary" onClick={goToLogInPage}>
-          I have already had an account
-        </Button>
+        <Button onClick={goToLogInPage}>I have already had an account</Button>
       </Typography>
     </Stack>
   );

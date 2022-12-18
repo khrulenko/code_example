@@ -1,14 +1,12 @@
-import { createTheme } from '@mui/material';
-
-const { spacing } = createTheme();
+import { PropsWithTheme } from '../../../common/types';
 
 const MuiTextField = {
   styleOverrides: {
-    root: {
+    root: ({ theme }: PropsWithTheme) => ({
       '& fieldset': {
-        borderRadius: spacing(2),
+        borderRadius: theme.spacing(2),
       },
-    },
+    }),
   },
 };
 

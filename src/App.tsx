@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { onAuthStateChanged } from 'firebase/auth';
 import { getUser } from './redux/store';
 import useManageData from './firebase/useManageData';
 import AppRoutes from './routing/Routes';
-import { onAuthStateChanged } from 'firebase/auth';
 import { endLoadingUser, setUser } from './redux/slices/userSlice';
 import { getUserData } from './common/utils';
 import { auth } from './firebase/firebaseInit';

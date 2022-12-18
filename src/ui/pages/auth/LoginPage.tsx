@@ -43,7 +43,6 @@ const LoginPage = () => {
 
       <Button
         variant="contained"
-        color="primary"
         disableElevation
         onClick={onLogin}
         disabled={isUnableToSignIn}
@@ -54,9 +53,7 @@ const LoginPage = () => {
       <Typography align="center">
         If you don't have an account then
         <br />
-        <Button color="primary" onClick={goToRegistrationPage}>
-          Go to registration
-        </Button>
+        <Button onClick={goToRegistrationPage}>Go to registration</Button>
       </Typography>
     </Stack>
   );

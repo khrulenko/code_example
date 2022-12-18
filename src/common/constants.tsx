@@ -1,4 +1,4 @@
-const APP_NAME = 'The Budget';
+const APP_NAME = 'the budget';
 
 enum Collections {
   PROFILES = 'profiles',

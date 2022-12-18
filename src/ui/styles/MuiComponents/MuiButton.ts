@@ -1,12 +1,10 @@
-import { createTheme } from '@mui/material';
-
-const { spacing } = createTheme();
+import { PropsWithTheme } from '../../../common/types';
 
 const MuiButton = {
   styleOverrides: {
-    root: {
-      borderRadius: spacing(2),
-    },
+    root: ({ theme }: PropsWithTheme) => ({
+      borderRadius: theme.spacing(2),
+    }),
   },
 };
 

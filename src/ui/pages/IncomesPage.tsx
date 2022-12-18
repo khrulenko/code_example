@@ -1,3 +1,4 @@
+import { useTheme } from '@mui/material';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { handleChange } from '../../common/utils';
@@ -18,7 +19,14 @@ const IncomesPage = () => {
   const handleNameChange = handleChange(newNameSet);
   const handleCurrensyChange = handleChange(newCurrensySet);
 
-  const style = { border: '1px solid black', margin: '20px', padding: '10px' };
+  const { spacing, palette } = useTheme();
+
+  const style = {
+    width: '100%',
+    padding: spacing(2),
+    backgroundColor: palette.background.paper,
+    borderRadius: spacing(2),
+  };
   const isUserLoggedIn = !!user?.uid;
 
   return (

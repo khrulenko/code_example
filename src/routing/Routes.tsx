@@ -7,7 +7,13 @@ import LoginPage from '../ui/pages/auth/LoginPage';
 import RegistrationPage from '../ui/pages/auth/RegistrationPage';
 import IncomesPage from '../ui/pages/IncomesPage';
 import ConditionalRoute from './ConditionalRoute';
-import { URL_AUTH, URL_REGISTRATION, URL_INCOMES, URL_LOGIN } from './URLs';
+import {
+  URL_AUTH,
+  URL_REGISTRATION,
+  URL_INCOMES,
+  URL_LOGIN,
+  URL_ANALYTICS,
+} from './URLs';
 
 const AppRoutes = () => {
   const { uid, loading } = useSelector(getUser);
@@ -42,8 +48,12 @@ const AppRoutes = () => {
           <Route index element={<Navigate to={URL_INCOMES} />} />
           <Route path={URL_INCOMES} element={<IncomesPage />} />
           <Route
-            path={'not_completed_page'}
-            element={<div>PAGE NOT completed, go away</div>}
+            path={URL_ANALYTICS}
+            element={
+              <div>
+                There is no analytics yet, please, visit this page later
+              </div>
+            }
           />
 
           <Route path="*" element={<div>PAGE NOT FOUND, go home</div>} />

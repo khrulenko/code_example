@@ -14,7 +14,9 @@ const AuthLayout = () => {
 
   return (
     <Stack spacing={6} p={3} alignItems="center">
-      <Typography variant="h1">{APP_NAME}</Typography>
+      <Typography variant="h1" sx={{ textTransform: 'capitalize' }}>
+        {APP_NAME}
+      </Typography>
 
       <Stack width="100%" maxWidth="420px">
         <Outlet />
