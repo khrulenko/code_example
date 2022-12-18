@@ -24,7 +24,7 @@ export type UserPanelWrapperProps = StackProps & UserPanelProps;
 const UserPanelWrapper = styled(Stack)(createUserPanelWrapperStyles);
 const LogOutButton = styled(Button)(createLogOutButtonStyles);
 
-const UserPanel = ({ open }: UserPanelProps) => {
+const UserPanel = ({ open = true }: UserPanelProps) => {
   const user = useSelector(getUser);
   const { logOut } = useAuth();
 

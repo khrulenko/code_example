@@ -6,6 +6,7 @@ import MainLayout from '../ui/MainLayout';
 import LoginPage from '../ui/pages/auth/LoginPage';
 import RegistrationPage from '../ui/pages/auth/RegistrationPage';
 import IncomesPage from '../ui/pages/IncomesPage';
+import ProfilePage from '../ui/pages/ProfilePage';
 import ConditionalRoute from './ConditionalRoute';
 import {
   URL_AUTH,
@@ -13,6 +14,7 @@ import {
   URL_INCOMES,
   URL_LOGIN,
   URL_ANALYTICS,
+  URL_PROFILE,
 } from './URLs';
 
 const AppRoutes = () => {
@@ -47,6 +49,7 @@ const AppRoutes = () => {
         <Route path={'/'} element={<MainLayout />}>
           <Route index element={<Navigate to={URL_INCOMES} />} />
           <Route path={URL_INCOMES} element={<IncomesPage />} />
+          <Route path={URL_PROFILE} element={<ProfilePage />} />
           <Route
             path={URL_ANALYTICS}
             element={

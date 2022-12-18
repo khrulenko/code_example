@@ -12,7 +12,7 @@ const createNavBarItemWrapperStyles: StyleFunction<NavBarItemWrapperProps> = ({
 
   backgroundColor: palette.background.paper,
   boxShadow: isChosen ? customShadows[1] : customShadows[0],
-  borderRadius: spacing(1),
+  borderRadius: spacing(3),
 });
 
 const createRouterLinkStyles: StyleFunction<LinkProps> = ({

@@ -11,6 +11,7 @@ import {
 import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
 import KeyboardDoubleArrowLeftRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftRounded';
 import MonetizationOnRoundedIcon from '@mui/icons-material/MonetizationOnRounded';
+import ManageAccountsRoundedIcon from '@mui/icons-material/ManageAccountsRounded';
 import { APP_NAME } from '../../../common/constants';
 import { AnyFunction } from '../../../common/types';
 import {
@@ -20,7 +21,7 @@ import {
   createNavBarHeaderStyles,
 } from './styles';
 import NavBarItem from './NavBarItem';
-import UserPanel from './UserPanel';
+import { URL_PROFILE } from '../../../routing/URLs';
 
 export interface NavBarItemData {
   title: string;
@@ -72,7 +73,12 @@ const NavBar = ({ toggler, open, items }: NavBarProps) => {
 
         <Divider />
 
-        <UserPanel open={open} />
+        <NavBarItem
+          url={URL_PROFILE}
+          icon={<ManageAccountsRoundedIcon />}
+          open={open}
+          title={'Profile'}
+        />
       </NavBarBody>
     </NavBarWrapper>
   );
