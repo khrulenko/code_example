@@ -4,7 +4,7 @@ const MuiTextField = {
   styleOverrides: {
     root: ({ theme }: PropsWithTheme) => ({
       '& fieldset': {
-        borderRadius: theme.spacing(2),
+        borderRadius: theme.spacing(3),
       },
     }),
   },
