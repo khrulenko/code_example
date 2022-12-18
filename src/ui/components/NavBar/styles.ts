@@ -32,7 +32,6 @@ const createNavBarWrapperStyles: StyleFunction<DrawerProps> = ({
   });
 
   return {
-    width: width.open,
     flexShrink: 0,
     whiteSpace: 'nowrap',
     ...(open ? openedMixin() : closedMixin()),
