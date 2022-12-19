@@ -17,3 +17,4 @@ Used technologies:
 - Firebase
   - auth
   - firestore
+- Material UI

@@ -1,59 +1,51 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, Outlet } from 'react-router-dom';
-import useAuth from '../firebase/useAuth';
+import { Outlet } from 'react-router-dom';
+import { Stack } from '@mui/system';
+import WalletRoundedIcon from '@mui/icons-material/WalletRounded';
+import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded';
+import { useTheme } from '@mui/material';
 import { getUser } from '../redux/store';
-import { URL_INCOMES } from '../routing/URLs';
+import { URL_ANALYTICS, URL_INCOMES } from '../routing/URLs';
+import Loader from './components/Loader';
+import NavBar, { NavBarItems } from './components/NavBar';
+import useWindowWidth from '../common/hooks/useWindowWidth';
+
+const menuItems: NavBarItems = [
+  {
+    title: 'incomes',
+    url: URL_INCOMES,
+    icon: <WalletRoundedIcon />,
+  },
+  {
+    title: 'analytics',
+    url: URL_ANALYTICS,
+    icon: <QueryStatsRoundedIcon />,
+  },
+];
 
 const MainLayout = () => {
-  const { logOut } = useAuth();
+  const [isMenuOpened, setIsMenuOpened] = useState<boolean>(true);
+  const { isMobile } = useWindowWidth();
   const user = useSelector(getUser);
 
+  const toggleMenu = () => setIsMenuOpened((prevState) => !prevState);
+  const { spacing } = useTheme();
+
+  const direction = isMobile ? 'column' : 'row';
+
   if (user?.loading) {
-    return <div>LOADING...</div>;
+    return <Loader />;
   }
 
   return (
-    <div style={{ display: 'flex' }}>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
+    <Stack direction={direction}>
+      <NavBar open={isMenuOpened} toggler={toggleMenu} items={menuItems} />
 
-          border: '1px solid black',
-          margin: '20px',
-          padding: '10px',
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '10px',
-            marginBottom: '20px',
-          }}
-        >
-          <Link to={URL_INCOMES}>INCOMES</Link>
-          <Link to={'/not_completed_page'}>ANOTHER PAGE</Link>
-        </div>
-
-        <div>
-          <div>
-            <div>{user.uid}</div>
-            <div>
-              <b>{user.email}</b>
-            </div>
-            <div>user has been already signed in</div>
-          </div>
-
-          <button style={{ display: 'block' }} onClick={() => logOut()}>
-            logOut
-          </button>
-        </div>
-      </div>
-
-      <Outlet />
-    </div>
+      <Stack flexGrow={1} padding={spacing(13)} alignItems="center">
+        <Outlet />
+      </Stack>
+    </Stack>
   );
 };
 
