@@ -2,6 +2,7 @@ import {
   ButtonProps,
   CSSObject,
   DrawerProps,
+  ListProps,
   StackProps,
   TypographyProps,
 } from '@mui/material';
@@ -13,6 +14,7 @@ const createNavBarWrapperStyles: StyleFunction<DrawerProps> = ({
     transitions,
     palette,
     navBarSizes: { width },
+    breakpoints: { down },
   },
   open,
 }) => {
@@ -44,19 +46,34 @@ const createNavBarWrapperStyles: StyleFunction<DrawerProps> = ({
       borderBottomRightRadius: spacing(2),
       backgroundColor: palette.background.paper,
       overflowX: 'hidden',
+
+      [down('md')]: {
+        width: '100%',
+
+        borderBottomRightRadius: spacing(0),
+        borderTopLeftRadius: spacing(2),
+      },
     },
   };
 };
 
 const createNavBarBodyStyles: StyleFunction<StackProps> = ({
-  theme: { spacing },
+  theme: {
+    spacing,
+    breakpoints: { down },
+  },
 }) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
+  gap: spacing(1),
 
   height: '100%',
   padding: spacing(1),
+
+  [down('md')]: {
+    flexDirection: 'row',
+  },
 });
 
 const createNavBarButtonStyles: StyleFunction<ButtonProps> = ({
@@ -80,9 +97,28 @@ const createNavBarHeaderStyles: StyleFunction<TypographyProps> = ({
   borderRadius: spacing(1),
 });
 
+const createNavBarItemsListStyles: StyleFunction<ListProps> = ({
+  theme: {
+    spacing,
+    breakpoints: { down },
+  },
+}) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  flexGrow: 1,
+  gap: spacing(1),
+
+  padding: '0',
+
+  [down('md')]: {
+    flexDirection: 'row',
+  },
+});
+
 export {
   createNavBarWrapperStyles,
   createNavBarBodyStyles,
   createNavBarButtonStyles,
   createNavBarHeaderStyles,
+  createNavBarItemsListStyles,
 };

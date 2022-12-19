@@ -16,7 +16,7 @@ import { NavBarItemData } from '..';
 import { getShouldNotForvardRule } from '../../../../common/utils';
 
 export type NavBarItemProps = {
-  open?: boolean;
+  isOpened?: boolean;
 } & NavBarItemData;
 
 export type NavBarItemWrapperProps = {
@@ -31,17 +31,17 @@ const NavBarItemWrapper = styled(
 const RouterLink = styled(Link)(createRouterLinkStyles);
 const NavBarItemText = styled(ListItemText)(createNavBarItemTextStyles);
 
-const NavBarItem = ({ url, title, icon, open }: NavBarItemProps) => {
+const NavBarItem = ({ url, title, icon, isOpened }: NavBarItemProps) => {
   const location = useLocation();
   const isChosen = location.pathname === url;
-  const tooltipTitle = open ? '' : title;
+  const tooltipTitle = isOpened ? '' : title;
 
   return (
     <Tooltip title={tooltipTitle} placement="right">
       <NavBarItemWrapper isChosen={isChosen}>
         <RouterLink to={url}>
           <ListItemIcon>{icon}</ListItemIcon>
-          {open && <NavBarItemText>{title}</NavBarItemText>}
+          {isOpened && <NavBarItemText>{title}</NavBarItemText>}
         </RouterLink>
       </NavBarItemWrapper>
     </Tooltip>

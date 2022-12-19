@@ -4,6 +4,7 @@ import {
   Divider,
   Drawer,
   DrawerProps,
+  List,
   Stack,
   styled,
   Typography,
@@ -19,9 +20,11 @@ import {
   createNavBarBodyStyles,
   createNavBarButtonStyles,
   createNavBarHeaderStyles,
+  createNavBarItemsListStyles,
 } from './styles';
 import NavBarItem from './NavBarItem';
 import { URL_PROFILE } from '../../../routing/URLs';
+import useWindowWidth from '../../../common/hooks/useWindowWidth';
 
 export interface NavBarItemData {
   title: string;
@@ -40,43 +43,58 @@ const NavBarWrapper = styled(Drawer)(createNavBarWrapperStyles);
 const NavBarBody = styled(Stack)(createNavBarBodyStyles);
 const NavBarButton = styled(Button)(createNavBarButtonStyles);
 const NavBarHeader = styled(Typography)(createNavBarHeaderStyles);
+const NavBarItemsList = styled(List)(createNavBarItemsListStyles);
 
 const NavBar = ({ toggler, open, items }: NavBarProps) => {
+  const { isMobile } = useWindowWidth();
+
+  const navBarPosition = isMobile ? 'bottom' : 'left';
+  const dividerOrientation = isMobile ? 'vertical' : 'horizontal';
+  const isItemOpened = isMobile || open;
+  const NavBarButtonIcon = open ? (
+    <KeyboardDoubleArrowLeftRoundedIcon />
+  ) : (
+    <KeyboardDoubleArrowRightRoundedIcon />
+  );
+  const NavBarHeaderContent = open ? (
+    APP_NAME
+  ) : (
+    <MonetizationOnRoundedIcon fontSize="small" />
+  );
+
   return (
-    <NavBarWrapper variant="permanent" open={open}>
-      <NavBarButton onClick={toggler}>
-        {open ? (
-          <KeyboardDoubleArrowLeftRoundedIcon />
-        ) : (
-          <KeyboardDoubleArrowRightRoundedIcon />
+    <NavBarWrapper anchor={navBarPosition} variant="permanent" open={open}>
+      {!isMobile && (
+        <NavBarButton onClick={toggler}>{NavBarButtonIcon}</NavBarButton>
+      )}
+
+      <NavBarBody>
+        {!isMobile && (
+          <>
+            <NavBarHeader variant="h5">{NavBarHeaderContent}</NavBarHeader>
+
+            <Divider />
+          </>
         )}
-      </NavBarButton>
 
-      <NavBarBody spacing={1}>
-        <NavBarHeader variant="h5">
-          {open ? APP_NAME : <MonetizationOnRoundedIcon fontSize="small" />}
-        </NavBarHeader>
-
-        <Divider />
-
-        <Stack spacing={1} flexGrow={1}>
+        <NavBarItemsList>
           {items.map(({ title, url, icon }) => (
             <NavBarItem
               key={url}
               url={url}
               icon={icon}
-              open={open}
+              isOpened={isItemOpened}
               title={title}
             />
           ))}
-        </Stack>
+        </NavBarItemsList>
 
-        <Divider />
+        <Divider orientation={dividerOrientation} flexItem={isMobile} />
 
         <NavBarItem
           url={URL_PROFILE}
           icon={<ManageAccountsRoundedIcon />}
-          open={open}
+          isOpened={isItemOpened}
           title={'Profile'}
         />
       </NavBarBody>

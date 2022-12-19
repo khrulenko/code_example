@@ -59,7 +59,10 @@ const AppRoutes = () => {
             }
           />
 
-          <Route path="*" element={<div>PAGE NOT FOUND, go home</div>} />
+          <Route
+            path="*"
+            element={<div>Page not found, go try something else</div>}
+          />
         </Route>
       </Route>
     </Routes>
