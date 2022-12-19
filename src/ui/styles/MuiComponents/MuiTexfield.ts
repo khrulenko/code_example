@@ -3,7 +3,7 @@ import { PropsWithTheme } from '../../../common/types';
 const MuiTextField = {
   styleOverrides: {
     root: ({ theme }: PropsWithTheme) => ({
-      '& fieldset': {
+      '& .MuiOutlinedInput-root': {
         borderRadius: theme.spacing(3),
       },
     }),
