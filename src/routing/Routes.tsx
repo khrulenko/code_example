@@ -61,7 +61,7 @@ const AppRoutes = () => {
 
           <Route
             path="*"
-            element={<div>Page not found, go try something else</div>}
+            element={<div>Page not found, try something else</div>}
           />
         </Route>
       </Route>
