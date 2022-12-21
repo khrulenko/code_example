@@ -72,7 +72,7 @@ const IncomesPage = () => {
             <div>LOADING...</div>
           ) : (
             <ol>
-              {incomes.length
+              {incomes?.length
                 ? incomes.map((income, i) => (
                     <li key={income.id}>
                       {income.amount} | {income.name} | {income.date}

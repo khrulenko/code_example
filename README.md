@@ -18,3 +18,4 @@ Used technologies:
   - auth
   - firestore
 - Material UI
+- Joi.dev (data validation)

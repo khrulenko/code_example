@@ -24,7 +24,7 @@ const createNavBarWrapperStyles: StyleFunction<DrawerProps> = ({
   });
 
   const openedMixin = (): CSSObject => ({
-    width: width.open,
+    width: width.opened,
     transition,
   });
 
@@ -34,7 +34,7 @@ const createNavBarWrapperStyles: StyleFunction<DrawerProps> = ({
   });
 
   return {
-    width: width.open,
+    width: width.opened,
     flexShrink: 0,
     whiteSpace: 'nowrap',
     ...(open ? openedMixin() : closedMixin()),
