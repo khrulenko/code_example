@@ -12,7 +12,7 @@ type CustomThemeProps = {
   customShadows: string[];
   navBarSizes: {
     width: {
-      open: number;
+      opened: number;
       closed: number;
     };
   };
@@ -44,7 +44,7 @@ const theme = createTheme({
   customShadows,
   navBarSizes: {
     width: {
-      open: 240,
+      opened: 240,
       closed: 56,
     },
   },
