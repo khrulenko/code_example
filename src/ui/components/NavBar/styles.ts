@@ -82,17 +82,18 @@ const createNavBarButtonStyles: StyleFunction<ButtonProps> = ({
   width: '100%',
   minWidth: spacing(4),
 
+  padding: spacing(1),
+
   borderRadius: '0',
 });
 
 const createNavBarHeaderStyles: StyleFunction<TypographyProps> = ({
   theme: { spacing, palette },
 }) => ({
-  padding: spacing(1),
-
   fontWeight: 'bold',
   textTransform: 'capitalize',
   textAlign: 'center',
+
   backgroundColor: palette.background.paper,
   borderRadius: spacing(1),
 });

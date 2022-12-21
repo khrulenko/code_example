@@ -1,4 +1,4 @@
-import UserPanel from '../components/NavBar/UserPanel';
+import UserPanel from '../../components/NavBar/UserPanel';
 
 const ProfilePage = () => {
   return <UserPanel />;

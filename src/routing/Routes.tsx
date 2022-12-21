@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { getUser } from '../redux/store';
-import AuthLayout from '../ui/AuthLayout';
-import MainLayout from '../ui/MainLayout';
+import AuthLayout from '../ui/layouts/AuthLayout';
+import MainLayout from '../ui/layouts/MainLayout';
+import AnalyticsPage from '../ui/pages/AnalyticsPage';
 import LoginPage from '../ui/pages/auth/LoginPage';
 import RegistrationPage from '../ui/pages/auth/RegistrationPage';
 import IncomesPage from '../ui/pages/IncomesPage';
@@ -50,14 +51,7 @@ const AppRoutes = () => {
           <Route index element={<Navigate to={URL_INCOMES} />} />
           <Route path={URL_INCOMES} element={<IncomesPage />} />
           <Route path={URL_PROFILE} element={<ProfilePage />} />
-          <Route
-            path={URL_ANALYTICS}
-            element={
-              <div>
-                There is no analytics yet, please, visit this page later
-              </div>
-            }
-          />
+          <Route path={URL_ANALYTICS} element={<AnalyticsPage />} />
 
           <Route
             path="*"
