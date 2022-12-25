@@ -1,107 +1,123 @@
-import { useTheme } from '@mui/material';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { handleChange } from '../../../common/utils';
+import {
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  Button,
+  Stack,
+  Tooltip,
+  styled,
+} from '@mui/material';
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import useManageData from '../../../firebase/useManageData';
-import { getIncomes, getUser } from '../../../redux/store';
+import { getIncomes } from '../../../redux/store';
+import Loader from '../../components/Loader';
 import PageLayout from '../../layouts/PageLayout';
+import {
+  createAddIncomeButtonStyles,
+  createIncomesTableStyles,
+  createActionButtonStyles,
+} from './styles';
+import { Income } from '../../../redux/slices/incomesSlice';
+import useDisclosure from '../../../common/hooks/useDisclosure';
+import NoIncomesAlert from '../../patterns/NoIncomesAlert';
+import AddIncomeModal from '../../patterns/AddIncomeModal';
+import EditIncomeModal from '../../patterns/EditIncomeModal';
+
+const IncomesTable = styled(Table)(createIncomesTableStyles);
+const ActionButton = styled(Button)(createActionButtonStyles);
+const AddIncomeButton = styled(Button)(createAddIncomeButtonStyles);
+
+const headers = ['Date', 'Amount', 'Currency', 'Comment', ''];
 
 const IncomesPage = () => {
-  const [newAmount, newAmountSet] = useState<number>(0);
-  const [newName, newNameSet] = useState<string>('');
-  const [newCurrensy, newCurrensySet] = useState<string>('UAH');
+  const [editingIncomeId, editingIncomeIdSet] = useState<string>('');
 
-  const { addIncome, changeIncome, deleteIncome } = useManageData();
-
-  const user = useSelector(getUser);
   const { items: incomes, loading } = useSelector(getIncomes);
+  const { deleteIncome } = useManageData();
 
-  const handleAmountChange = handleChange(newAmountSet);
-  const handleNameChange = handleChange(newNameSet);
-  const handleCurrensyChange = handleChange(newCurrensySet);
+  const addingDialog = useDisclosure();
+  const editingDialog = useDisclosure();
 
-  const { spacing, palette } = useTheme();
+  const areThereIncomes = incomes?.length;
 
-  const style = {
-    width: '100%',
+  const postfix = (
+    <AddIncomeButton onClick={addingDialog.onOpen}>
+      <AddCircleRoundedIcon fontSize="large" />
+    </AddIncomeButton>
+  );
 
-    backgroundColor: palette.background.paper,
-    borderRadius: spacing(2),
+  const createHeaderCell = (header: string) => (
+    <TableCell key={header}>{header}</TableCell>
+  );
+
+  const createIncomeRow = ({ id, date, amount, currency, comment }: Income) => {
+    return (
+      <TableRow key={id}>
+        <TableCell>{date}</TableCell>
+        <TableCell>{amount}</TableCell>
+        <TableCell>{currency}</TableCell>
+        <TableCell>{comment}</TableCell>
+        <TableCell>
+          <Stack spacing={1} direction="row" justifyContent="center">
+            <Tooltip title="Edit">
+              <ActionButton
+                variant="contained"
+                onClick={() => {
+                  editingIncomeIdSet(id);
+                  editingDialog.onOpen();
+                }}
+              >
+                <EditRoundedIcon />
+              </ActionButton>
+            </Tooltip>
+
+            <Tooltip title="Delete">
+              <ActionButton
+                variant="contained"
+                onClick={() => deleteIncome(id)}
+              >
+                <DeleteForeverRoundedIcon />
+              </ActionButton>
+            </Tooltip>
+          </Stack>
+        </TableCell>
+      </TableRow>
+    );
   };
-  const isUserLoggedIn = !!user?.uid;
+
+  if (!areThereIncomes && loading) {
+    return <Loader />;
+  }
 
   return (
-    <PageLayout header="Incomes">
-      <div style={style}>
-        {isUserLoggedIn ? (
-          <>
-            <input
-              style={{ display: 'block' }}
-              type="number"
-              id="amount"
-              onChange={handleAmountChange}
-            />
-            <input
-              style={{ display: 'block' }}
-              type="text"
-              id="name"
-              onChange={handleNameChange}
-            />
-            <select
-              style={{ display: 'block', marginBottom: '20px' }}
-              value={newCurrensy}
-              name="currensy"
-              onChange={handleCurrensyChange}
-            >
-              <option value="UAH">hryvnia</option>
-              <option value="USD">dollar</option>
-              <option value="EUR">euro</option>
-            </select>
-            <button
-              onClick={() =>
-                addIncome({
-                  amount: newAmount,
-                  name: newName,
-                  currensy: newCurrensy,
-                })
-              }
-            >
-              Add income
-            </button>
+    <PageLayout header="Incomes" postfix={postfix}>
+      {areThereIncomes ? (
+        <IncomesTable>
+          <TableHead>
+            <TableRow>{headers.map(createHeaderCell)}</TableRow>
+          </TableHead>
+          <TableBody>{incomes.map(createIncomeRow)}</TableBody>
+        </IncomesTable>
+      ) : (
+        <NoIncomesAlert />
+      )}
 
-            {loading ? (
-              <div>LOADING...</div>
-            ) : (
-              <ol>
-                {incomes?.length
-                  ? incomes.map((income, i) => (
-                      <li key={income.id}>
-                        {income.amount} | {income.name} | {income.date}
-                        <button onClick={() => deleteIncome(income.id)}>
-                          delete
-                        </button>
-                        <button
-                          onClick={() =>
-                            changeIncome(income.id, {
-                              amount: newAmount,
-                              name: newName,
-                              currensy: newCurrensy,
-                            })
-                          }
-                        >
-                          CHANGE
-                        </button>
-                        {income.id}
-                      </li>
-                    ))
-                  : 'there are no incomes'}
-              </ol>
-            )}
-          </>
-        ) : (
-          'there is no user, please sign in'
-        )}
-      </div>
+      <AddIncomeModal
+        isOpen={addingDialog.isOpen}
+        onClose={addingDialog.onClose}
+      />
+
+      <EditIncomeModal
+        id={editingIncomeId}
+        isOpen={editingDialog.isOpen}
+        onClose={editingDialog.onClose}
+      />
     </PageLayout>
   );
 };

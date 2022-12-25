@@ -3,17 +3,20 @@ import { UserPanelWrapperProps } from '.';
 import { StyleFunction } from '../../../../common/types';
 
 const createUserPanelWrapperStyles: StyleFunction<UserPanelWrapperProps> = ({
-  theme: { spacing },
+  theme: { spacing, palette },
 }) => ({
-  padding: spacing(1),
+  padding: spacing(2),
 
-  backgroundColor: 'black',
-  borderRadius: '16px',
+  backgroundColor: palette.primary.main,
+  borderRadius: spacing(3),
 });
 
-const createLogOutButtonStyles: StyleFunction<ButtonProps> = () => ({
-  minWidth: '16px',
-  height: '24px',
+const createLogOutButtonStyles: StyleFunction<ButtonProps> = ({
+  theme: { spacing },
+}) => ({
+  height: spacing(3),
+
+  padding: spacing(3),
 });
 
 export { createUserPanelWrapperStyles, createLogOutButtonStyles };

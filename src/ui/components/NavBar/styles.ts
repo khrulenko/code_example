@@ -33,6 +33,8 @@ const createNavBarWrapperStyles: StyleFunction<DrawerProps> = ({
     transition,
   });
 
+  const borderRadius = spacing(3);
+
   return {
     width: width.opened,
     flexShrink: 0,
@@ -42,8 +44,8 @@ const createNavBarWrapperStyles: StyleFunction<DrawerProps> = ({
     '& .MuiDrawer-paper': {
       ...(open ? openedMixin() : closedMixin()),
 
-      borderTopRightRadius: spacing(2),
-      borderBottomRightRadius: spacing(2),
+      borderTopRightRadius: borderRadius,
+      borderBottomRightRadius: borderRadius,
       backgroundColor: palette.background.paper,
       overflowX: 'hidden',
 
@@ -51,7 +53,7 @@ const createNavBarWrapperStyles: StyleFunction<DrawerProps> = ({
         width: '100%',
 
         borderBottomRightRadius: spacing(0),
-        borderTopLeftRadius: spacing(2),
+        borderTopLeftRadius: borderRadius,
       },
     },
   };
@@ -80,7 +82,6 @@ const createNavBarButtonStyles: StyleFunction<ButtonProps> = ({
   theme: { spacing },
 }) => ({
   width: '100%',
-  minWidth: spacing(4),
 
   padding: spacing(1),
 

@@ -28,12 +28,12 @@ const ContentWrapper = styled(Stack)(createContentWrapperStyles);
 
 const MainLayout = () => {
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(true);
-  const { isMobile } = useWindowWidth();
+  const { isTabletOrSmaller } = useWindowWidth();
   const user = useSelector(getUser);
 
   const toggleMenu = () => setIsMenuOpened((prevState) => !prevState);
 
-  const direction = isMobile ? 'column' : 'row';
+  const direction = isTabletOrSmaller ? 'column' : 'row';
 
   if (user?.loading) {
     return <Loader />;

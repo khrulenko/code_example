@@ -10,4 +10,13 @@ const createPageCanvasStyles: StyleFunction<PaperProps> = ({
   borderRadius: spacing(6),
 });
 
-export { createPageCanvasStyles };
+const createHeaderWrapperStyles: StyleFunction<PaperProps> = ({
+  theme: { spacing },
+}) => ({
+  gap: spacing(1),
+  flexDirection: 'row',
+  alignItems: 'center',
+  height: spacing(7),
+});
+
+export { createPageCanvasStyles, createHeaderWrapperStyles };

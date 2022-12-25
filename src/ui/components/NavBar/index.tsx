@@ -46,11 +46,11 @@ const NavBarHeader = styled(Typography)(createNavBarHeaderStyles);
 const NavBarItemsList = styled(List)(createNavBarItemsListStyles);
 
 const NavBar = ({ toggler, open, items }: NavBarProps) => {
-  const { isMobile } = useWindowWidth();
+  const { isTabletOrSmaller } = useWindowWidth();
 
-  const navBarPosition = isMobile ? 'bottom' : 'left';
-  const dividerOrientation = isMobile ? 'vertical' : 'horizontal';
-  const isItemOpened = isMobile || open;
+  const navBarPosition = isTabletOrSmaller ? 'bottom' : 'left';
+  const dividerOrientation = isTabletOrSmaller ? 'vertical' : 'horizontal';
+  const isItemOpened = isTabletOrSmaller || open;
   const NavBarButtonIcon = open ? (
     <KeyboardDoubleArrowLeftRoundedIcon />
   ) : (
@@ -64,12 +64,12 @@ const NavBar = ({ toggler, open, items }: NavBarProps) => {
 
   return (
     <NavBarWrapper anchor={navBarPosition} variant="permanent" open={open}>
-      {!isMobile && (
+      {!isTabletOrSmaller && (
         <NavBarButton onClick={toggler}>{NavBarButtonIcon}</NavBarButton>
       )}
 
       <NavBarBody>
-        {!isMobile && (
+        {!isTabletOrSmaller && (
           <>
             <NavBarHeader variant="h5">{NavBarHeaderContent}</NavBarHeader>
 
@@ -89,7 +89,10 @@ const NavBar = ({ toggler, open, items }: NavBarProps) => {
           ))}
         </NavBarItemsList>
 
-        <Divider orientation={dividerOrientation} flexItem={isMobile} />
+        <Divider
+          orientation={dividerOrientation}
+          flexItem={isTabletOrSmaller}
+        />
 
         <NavBarItem
           url={URL_PROFILE}

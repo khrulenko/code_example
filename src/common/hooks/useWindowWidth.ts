@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useTheme } from '@mui/material';
+import { Breakpoint, useTheme } from '@mui/material';
 
 const useWindowWidth = () => {
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
@@ -8,11 +8,15 @@ const useWindowWidth = () => {
     breakpoints: { keys, values },
   } = useTheme();
 
+  const theBiggestSize = keys[keys.length - 1];
+
   const getBreakpoint = (windowWidth: number): string =>
-    keys.find(
-      (key, i, arr) =>
-        windowWidth >= values[key] && windowWidth < values[arr[i + 1]]
-    ) || keys[keys.length - 1];
+    keys.find((key, i, arr) => {
+      const breakpoint = values[key];
+      const nextBreakpoint = values[arr[i + 1]];
+
+      return windowWidth >= breakpoint && windowWidth < nextBreakpoint;
+    }) || theBiggestSize;
 
   useEffect(() => {
     const onResize = () => {
@@ -25,10 +29,12 @@ const useWindowWidth = () => {
   }, []);
 
   const breakpoint = getBreakpoint(windowWidth);
-  const isMobile = ['xs', 'sm'].includes(breakpoint);
+  const isTabletOrSmaller = ['xs', 'ms', 'sm'].includes(breakpoint);
+  const isMobileOrSmaller = ['xs'].includes(breakpoint);
 
   return {
-    isMobile,
+    isTabletOrSmaller,
+    isMobileOrSmaller,
     windowWidth,
     breakpoint,
   };

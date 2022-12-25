@@ -5,4 +5,22 @@ enum Collections {
   PROFILES = 'profiles',
 }
 
-export { APP_NAME, MIN_PASSWORD_LENGTH, Collections };
+enum Currencies {
+  USD = 'USD',
+  EUR = 'EUR',
+  UAH = 'UAH',
+}
+
+enum CurrenciesSigns {
+  USD = '$',
+  EUR = '€',
+  UAH = '₴',
+}
+
+export {
+  APP_NAME,
+  MIN_PASSWORD_LENGTH,
+  Collections,
+  Currencies,
+  CurrenciesSigns,
+};

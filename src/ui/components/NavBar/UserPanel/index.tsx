@@ -19,7 +19,7 @@ export interface UserPanelProps {
   open?: boolean;
 }
 
-export type UserPanelWrapperProps = StackProps & UserPanelProps;
+export type UserPanelWrapperProps = UserPanelProps & StackProps;
 
 const UserPanelWrapper = styled(Stack)(createUserPanelWrapperStyles);
 const LogOutButton = styled(Button)(createLogOutButtonStyles);
@@ -39,7 +39,6 @@ const UserPanel = ({ open = true }: UserPanelProps) => {
 
       <LogOutButton
         variant="contained"
-        size="small"
         disableElevation
         onClick={() => logOut()}
       >

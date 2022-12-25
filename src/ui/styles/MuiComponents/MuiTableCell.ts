@@ -1,13 +1,13 @@
 import { PropsWithTheme } from '../../../common/types';
 
-const MuiButton = {
+const MuiTableCell = {
   styleOverrides: {
     root: ({ theme: { spacing } }: PropsWithTheme) => ({
-      minWidth: spacing(3),
+      maxWidth: spacing(12),
 
-      borderRadius: spacing(2),
+      padding: spacing(1),
     }),
   },
 };
 
-export default MuiButton;
+export default MuiTableCell;
