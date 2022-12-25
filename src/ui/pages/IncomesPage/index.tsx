@@ -57,40 +57,35 @@ const IncomesPage = () => {
     <TableCell key={header}>{header}</TableCell>
   );
 
-  const createIncomeRow = ({ id, date, amount, currency, comment }: Income) => {
-    return (
-      <TableRow key={id}>
-        <TableCell>{getDateFromISO(date)}</TableCell>
-        <TableCell>{amount}</TableCell>
-        <TableCell>{currency}</TableCell>
-        <TableCell>{comment}</TableCell>
-        <TableCell>
-          <Stack spacing={1} direction="row" justifyContent="center">
-            <Tooltip title="Edit">
-              <ActionButton
-                variant="contained"
-                onClick={() => {
-                  editingIncomeIdSet(id);
-                  editingDialog.onOpen();
-                }}
-              >
-                <EditRoundedIcon />
-              </ActionButton>
-            </Tooltip>
+  const createIncomeRow = ({ id, date, amount, currency, comment }: Income) => (
+    <TableRow key={id}>
+      <TableCell>{getDateFromISO(date)}</TableCell>
+      <TableCell>{amount}</TableCell>
+      <TableCell>{currency}</TableCell>
+      <TableCell>{comment}</TableCell>
+      <TableCell>
+        <Stack spacing={1} direction="row" justifyContent="center">
+          <Tooltip title="Edit">
+            <ActionButton
+              variant="contained"
+              onClick={() => {
+                editingIncomeIdSet(id);
+                editingDialog.onOpen();
+              }}
+            >
+              <EditRoundedIcon />
+            </ActionButton>
+          </Tooltip>
 
-            <Tooltip title="Delete">
-              <ActionButton
-                variant="contained"
-                onClick={() => deleteIncome(id)}
-              >
-                <DeleteForeverRoundedIcon />
-              </ActionButton>
-            </Tooltip>
-          </Stack>
-        </TableCell>
-      </TableRow>
-    );
-  };
+          <Tooltip title="Delete">
+            <ActionButton variant="contained" onClick={() => deleteIncome(id)}>
+              <DeleteForeverRoundedIcon />
+            </ActionButton>
+          </Tooltip>
+        </Stack>
+      </TableCell>
+    </TableRow>
+  );
 
   if (!areThereIncomes && loading) {
     return <Loader />;
@@ -99,7 +94,7 @@ const IncomesPage = () => {
   return (
     <PageLayout header="Incomes" postfix={postfix}>
       {areThereIncomes ? (
-        <IncomesTable>
+        <IncomesTable stickyHeader>
           <TableHead>
             <TableRow>{headers.map(createHeaderCell)}</TableRow>
           </TableHead>

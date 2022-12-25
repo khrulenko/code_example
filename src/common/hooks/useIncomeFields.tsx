@@ -1,7 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Currencies } from '../constants';
 import { handleChange } from '../utils';
 import { EditableIncomeData } from '../../firebase/useManageData';
+import validRules, { schemaWrapper } from '../validation';
+import Joi from 'joi';
+import useValidation from './useValidation';
+
+const schema = schemaWrapper({
+  amount: validRules.NUMERIC_STRING.required(),
+  comment: Joi.string().max(100).empty(['']),
+  currency: Joi.valid(...Object.values(Currencies)),
+});
 
 const empty: EditableIncomeData = {
   amount: '',
@@ -22,6 +31,13 @@ const useIncomeFields = (defaultValues: UseIncomeFieldsArgs = empty) => {
     currency,
   };
 
+  const validationData = useMemo(
+    () => ({ amount, comment, currency }),
+    [amount, comment, currency]
+  );
+
+  const validation = useValidation(validationData, schema);
+
   const handlers = {
     handleAmountChange: handleChange(amountSet),
     handleCommentChange: handleChange(commentSet),
@@ -41,6 +57,7 @@ const useIncomeFields = (defaultValues: UseIncomeFieldsArgs = empty) => {
   return {
     values,
     handlers,
+    validation,
     onResetValues,
   };
 };

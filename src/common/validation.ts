@@ -16,6 +16,7 @@ const validRules = {
       'string.min': `password must be at least ${MIN_PASSWORD_LENGTH} characters long`,
     })
     .required(),
+  NUMERIC_STRING: Joi.string().pattern(/^[0-9]+$/, 'numbers').empty(['']),
 };
 
 export default validRules;
