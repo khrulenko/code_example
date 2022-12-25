@@ -7,6 +7,7 @@ import {
   Typography,
   Button,
   CircularProgress,
+  useTheme,
 } from '@mui/material';
 
 type ModalDialogProps = {
@@ -24,7 +25,11 @@ const ModalDialog = ({
   header,
   ...props
 }: ModalDialogProps) => {
-  const [contentHeight, contentHeightSet] = useState(0);
+  const { minModalContentHeight } = useTheme();
+  const [contentHeight, contentHeightSet] = useState<number>(
+    minModalContentHeight
+  );
+
   const DialogContentStyles = { minHeight: `${contentHeight}px` };
 
   const getcontentHeight = (node: HTMLElement) => {
@@ -40,7 +45,16 @@ const ModalDialog = ({
       </Typography>
 
       <DialogContent ref={getcontentHeight} sx={DialogContentStyles}>
-        {open ? children : <CircularProgress />}
+        {open ? (
+          children
+        ) : (
+          <CircularProgress
+            sx={{
+              minHeight: `${contentHeight}px`,
+              height: `${contentHeight}px`,
+            }}
+          />
+        )}
       </DialogContent>
 
       <DialogActions>

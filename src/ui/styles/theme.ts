@@ -13,6 +13,7 @@ import MuiTableCell from './MuiComponents/MuiTableCell';
 // https://mui.com/material-ui/customization/default-theme/
 
 type CustomThemeProps = {
+  minModalContentHeight: 40;
   customShadows: string[];
   navBarSizes: {
     width: {
@@ -53,6 +54,7 @@ const navBarSizes = {
     closed: 56,
   },
 };
+const minModalContentHeight = 40;
 
 const theme = createTheme({
   palette,
@@ -69,6 +71,7 @@ const theme = createTheme({
   },
   customShadows,
   navBarSizes,
+  minModalContentHeight,
 } as ThemeOptions);
 
 export default theme;

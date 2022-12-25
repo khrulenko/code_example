@@ -14,7 +14,6 @@ import {
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
-import useManageData from '../../../firebase/useManageData';
 import { getIncomes } from '../../../redux/store';
 import Loader from '../../components/Loader';
 import PageLayout from '../../layouts/PageLayout';
@@ -28,6 +27,7 @@ import useDisclosure from '../../../common/hooks/useDisclosure';
 import NoIncomesAlert from '../../patterns/NoIncomesAlert';
 import AddIncomeModal from '../../patterns/AddIncomeModal';
 import EditIncomeModal from '../../patterns/EditIncomeModal';
+import DeleteIncomeModal from '../../patterns/DeleteIncomeModal';
 import { getDateFromISO } from '../../../common/utils';
 
 const IncomesTable = styled(Table)(createIncomesTableStyles);
@@ -35,15 +35,16 @@ const ActionButton = styled(Button)(createActionButtonStyles);
 const AddIncomeButton = styled(Button)(createAddIncomeButtonStyles);
 
 const headers = ['Date', 'Amount', 'Currency', 'Comment', ''];
+const tooltipPlacement = 'top';
 
 const IncomesPage = () => {
-  const [editingIncomeId, editingIncomeIdSet] = useState<string>('');
+  const [chosenIncomeId, chosenIncomeIdSet] = useState<string>('');
 
   const { items: incomes, loading } = useSelector(getIncomes);
-  const { deleteIncome } = useManageData();
 
   const addingDialog = useDisclosure();
   const editingDialog = useDisclosure();
+  const deletingDialog = useDisclosure();
 
   const areThereIncomes = incomes?.length;
 
@@ -65,11 +66,11 @@ const IncomesPage = () => {
       <TableCell>{comment}</TableCell>
       <TableCell>
         <Stack spacing={1} direction="row" justifyContent="center">
-          <Tooltip title="Edit">
+          <Tooltip title="Edit" placement={tooltipPlacement} followCursor>
             <ActionButton
               variant="contained"
               onClick={() => {
-                editingIncomeIdSet(id);
+                chosenIncomeIdSet(id);
                 editingDialog.onOpen();
               }}
             >
@@ -77,8 +78,14 @@ const IncomesPage = () => {
             </ActionButton>
           </Tooltip>
 
-          <Tooltip title="Delete">
-            <ActionButton variant="contained" onClick={() => deleteIncome(id)}>
+          <Tooltip title="Delete" placement={tooltipPlacement} followCursor>
+            <ActionButton
+              variant="contained"
+              onClick={() => {
+                chosenIncomeIdSet(id);
+                deletingDialog.onOpen();
+              }}
+            >
               <DeleteForeverRoundedIcon />
             </ActionButton>
           </Tooltip>
@@ -110,9 +117,15 @@ const IncomesPage = () => {
       />
 
       <EditIncomeModal
-        id={editingIncomeId}
+        id={chosenIncomeId}
         isOpen={editingDialog.isOpen}
         onClose={editingDialog.onClose}
+      />
+
+      <DeleteIncomeModal
+        id={chosenIncomeId}
+        isOpen={deletingDialog.isOpen}
+        onClose={deletingDialog.onClose}
       />
     </PageLayout>
   );
