@@ -5,9 +5,10 @@ const createContentWrapperStyles: StyleFunction<StackProps> = ({
   theme: { spacing },
 }) => ({
   flexGrow: 1,
+  alignItems: 'center',
+
   paddingY: spacing(11),
   padding: `${spacing(11)} 5%`,
-  alignItems: 'center',
 });
 
 export { createContentWrapperStyles };
