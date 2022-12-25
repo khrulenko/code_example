@@ -1,6 +1,6 @@
 # Khrulenko Vitalii code example
 
-[LINK TO APP PREVIEW](https://khrulenko.github.io/thebudget/)
+[LINK TO APP PREVIEW](https://khrulenko.github.io/code_example/)
 
 Used technologies:
 
