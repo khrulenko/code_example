@@ -22,9 +22,11 @@ const useIncomeFields = (defaultValues: UseIncomeFieldsArgs = empty) => {
     currency,
   };
 
-  const handleAmountChange = handleChange(amountSet);
-  const handleCommentChange = handleChange(commentSet);
-  const handleCurrencyChange = handleChange(currencySet);
+  const handlers = {
+    handleAmountChange: handleChange(amountSet),
+    handleCommentChange: handleChange(commentSet),
+    handleCurrencyChange: handleChange(currencySet),
+  };
 
   const onResetValues = () => {
     amountSet(defaultValues.amount);
@@ -38,10 +40,8 @@ const useIncomeFields = (defaultValues: UseIncomeFieldsArgs = empty) => {
 
   return {
     values,
+    handlers,
     onResetValues,
-    handleAmountChange,
-    handleCommentChange,
-    handleCurrencyChange,
   };
 };
 

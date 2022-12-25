@@ -13,13 +13,7 @@ type AddIncomeModalProps = {
 const AddIncomeModal = ({ isOpen, onClose }: AddIncomeModalProps) => {
   const { addIncome } = useManageData();
 
-  const {
-    values,
-    onResetValues,
-    handleAmountChange,
-    handleCommentChange,
-    handleCurrencyChange,
-  } = useIncomeFields();
+  const { values, handlers, onResetValues } = useIncomeFields();
 
   const closeAndReset = () => {
     onClose();
@@ -42,12 +36,7 @@ const AddIncomeModal = ({ isOpen, onClose }: AddIncomeModalProps) => {
         </Button>
       }
     >
-      <IncomeFields
-        values={values}
-        onAmountChange={handleAmountChange}
-        onCommentChange={handleCommentChange}
-        onCurrencyChange={handleCurrencyChange}
-      />
+      <IncomeFields values={values} handlers={handlers} />
     </ModalDialog>
   );
 };

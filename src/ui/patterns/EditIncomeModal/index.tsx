@@ -25,13 +25,7 @@ const EditIncomeModal = ({ id, isOpen, onClose }: EditIncomeModalProps) => {
 
   const { changeIncome } = useManageData();
 
-  const {
-    values,
-    onResetValues,
-    handleAmountChange,
-    handleCommentChange,
-    handleCurrencyChange,
-  } = useIncomeFields(defaultValues);
+  const { values, handlers, onResetValues } = useIncomeFields(defaultValues);
 
   const closeAndReset = () => {
     onClose();
@@ -54,12 +48,7 @@ const EditIncomeModal = ({ id, isOpen, onClose }: EditIncomeModalProps) => {
         </Button>
       }
     >
-      <IncomeFields
-        values={values}
-        onAmountChange={handleAmountChange}
-        onCommentChange={handleCommentChange}
-        onCurrencyChange={handleCurrencyChange}
-      />
+      <IncomeFields values={values} handlers={handlers} />
     </ModalDialog>
   );
 };

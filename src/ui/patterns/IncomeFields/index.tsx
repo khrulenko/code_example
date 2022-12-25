@@ -11,18 +11,12 @@ import { EditableIncomeData } from '../../../firebase/useManageData';
 
 type IncomeFieldsProps = {
   values: EditableIncomeData;
-  onAmountChange: AnyFunction;
-  onCommentChange: AnyFunction;
-  onCurrencyChange: AnyFunction;
+  handlers: { [key: string]: AnyFunction };
 };
 
-const IncomeFields = ({
-  values,
-  onAmountChange,
-  onCommentChange,
-  onCurrencyChange,
-}: IncomeFieldsProps) => {
+const IncomeFields = ({ values, handlers }: IncomeFieldsProps) => {
   const { amount, comment, currency } = values;
+  const { onAmountChange, onCommentChange, onCurrencyChange } = handlers;
   const currencies = Object.keys(Currencies);
 
   const getStartAdornment = (title: string) => (
