@@ -25,7 +25,7 @@ const createIncomesTableStyles: StyleFunction = ({
   display: 'table',
   overflowX: 'auto',
 
-  [down('xs')]: {
+  [down('ms')]: {
     display: 'block',
   },
 });

@@ -13,9 +13,10 @@ const createPageCanvasStyles: StyleFunction<PaperProps> = ({
 const createHeaderWrapperStyles: StyleFunction<PaperProps> = ({
   theme: { spacing },
 }) => ({
-  gap: spacing(1),
   flexDirection: 'row',
   alignItems: 'center',
+  gap: spacing(1),
+
   height: spacing(7),
 });
 
