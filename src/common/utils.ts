@@ -14,6 +14,17 @@ const getCurrentISODate = () => {
   return currentDate.toISOString().split('T')[0];
 };
 
+const getDateFromISO = (date: string) => {
+  const dateObj = new Date(date);
+  const dateString = dateObj.toLocaleString('en-US', {
+    month: 'short',
+    year: 'numeric',
+    day: 'numeric',
+  });
+
+  return dateString;
+};
+
 const createUrl = (...pathes: string[]): string => pathes.join('/');
 
 const handleChange =
@@ -44,6 +55,7 @@ const getDeleteCallback =
 export {
   getUserData,
   getCurrentISODate,
+  getDateFromISO,
   createUrl,
   handleChange,
   getShouldNotForvardRule,

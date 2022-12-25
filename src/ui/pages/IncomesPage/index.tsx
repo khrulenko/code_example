@@ -28,6 +28,7 @@ import useDisclosure from '../../../common/hooks/useDisclosure';
 import NoIncomesAlert from '../../patterns/NoIncomesAlert';
 import AddIncomeModal from '../../patterns/AddIncomeModal';
 import EditIncomeModal from '../../patterns/EditIncomeModal';
+import { getDateFromISO } from '../../../common/utils';
 
 const IncomesTable = styled(Table)(createIncomesTableStyles);
 const ActionButton = styled(Button)(createActionButtonStyles);
@@ -59,7 +60,7 @@ const IncomesPage = () => {
   const createIncomeRow = ({ id, date, amount, currency, comment }: Income) => {
     return (
       <TableRow key={id}>
-        <TableCell>{date}</TableCell>
+        <TableCell>{getDateFromISO(date)}</TableCell>
         <TableCell>{amount}</TableCell>
         <TableCell>{currency}</TableCell>
         <TableCell>{comment}</TableCell>
