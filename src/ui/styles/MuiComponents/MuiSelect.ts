@@ -1,13 +1,11 @@
 import { PropsWithTheme } from '../../../common/types';
 
-const MuiButton = {
+const MuiSelect = {
   styleOverrides: {
     root: ({ theme: { spacing } }: PropsWithTheme) => ({
-      minWidth: spacing(3),
-
-      borderRadius: spacing(2),
+      borderRadius: spacing(3),
     }),
   },
 };
 
-export default MuiButton;
+export default MuiSelect;

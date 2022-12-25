@@ -1,5 +1,5 @@
 import { FBUser } from '../redux/slices/userSlice';
-import { StringObject } from './types';
+import { AnyFunction, StringObject } from './types';
 
 const getUserData = (user: FBUser) => {
   if (!user) return user;
@@ -14,10 +14,21 @@ const getCurrentISODate = () => {
   return currentDate.toISOString().split('T')[0];
 };
 
+const getDateFromISO = (date: string) => {
+  const dateObj = new Date(date);
+  const dateString = dateObj.toLocaleString('en-US', {
+    month: 'short',
+    year: 'numeric',
+    day: 'numeric',
+  });
+
+  return dateString;
+};
+
 const createUrl = (...pathes: string[]): string => pathes.join('/');
 
 const handleChange =
-  (action: any) =>
+  (action: AnyFunction) =>
   ({ target: { value } }: any) => {
     action(value);
   };
@@ -44,6 +55,7 @@ const getDeleteCallback =
 export {
   getUserData,
   getCurrentISODate,
+  getDateFromISO,
   createUrl,
   handleChange,
   getShouldNotForvardRule,

@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   arrayRemove,
   arrayUnion,
@@ -8,9 +10,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { nanoid } from 'nanoid';
-import { useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Collections } from '../common/constants';
+import { Collections, Currencies } from '../common/constants';
 import { getCurrentISODate } from '../common/utils';
 import {
   setIncomes,
@@ -20,11 +20,11 @@ import {
 import { getIncomes, getUser } from '../redux/store';
 import { db } from './firebaseInit';
 
-type NewIncomeData = {
-  amount?: number;
+export type EditableIncomeData = {
+  amount: string;
   date?: string;
-  name?: string;
-  currensy?: string;
+  comment: string;
+  currency: Currencies;
 };
 
 const useManageData = () => {
@@ -63,7 +63,7 @@ const useManageData = () => {
     return unsubscribe;
   };
 
-  const addIncome = ({ amount, name, currensy }: any) => {
+  const addIncome = ({ amount, comment, currency }: EditableIncomeData) => {
     if (!profileRef) return;
 
     try {
@@ -72,8 +72,8 @@ const useManageData = () => {
           id: nanoid(),
           amount,
           date: getCurrentISODate(),
-          name,
-          currensy,
+          comment,
+          currency,
         }),
       });
     } catch ({ code, message }) {
@@ -96,7 +96,10 @@ const useManageData = () => {
     }
   };
 
-  const changeIncome = (incomeId: string, newIncomeData: NewIncomeData) => {
+  const changeIncome = (
+    incomeId: string,
+    newIncomeData: EditableIncomeData
+  ) => {
     if (!profileRef) return;
 
     const changingIncomeIndex = incomes.findIndex((inc) => inc.id === incomeId);

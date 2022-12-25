@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Currencies } from '../../common/constants';
 
 export interface Income {
   id: string;
-  amount: number;
+  amount: string;
   date: string;
-  name: string;
-  currensy: string;
+  comment: string;
+  currency: Currencies;
 }
 
 export type Incomes = Income[];

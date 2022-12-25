@@ -14,6 +14,19 @@ const MuiTextField = {
       '& .MuiInputLabel-root.Mui-error': {
         color: 'inherit',
       },
+      input: {
+        '&::-webkit-outer-spin-button': {
+          WebkitAppearance: 'none',
+          margin: 0,
+        },
+        '&::-webkit-inner-spin-button': {
+          WebkitAppearance: 'none',
+          margin: 0,
+        },
+        '&[type=number]': {
+          MozAppearance: 'textfield',
+        },
+      },
     }),
   },
 };
