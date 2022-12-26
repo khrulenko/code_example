@@ -19,3 +19,4 @@ Used technologies:
   - firestore
 - Material UI
 - Joi.dev (data validation)
+- Jest
