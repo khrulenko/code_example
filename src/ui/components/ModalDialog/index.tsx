@@ -31,6 +31,10 @@ const ModalDialog = ({
   );
 
   const DialogContentStyles = { minHeight: `${contentHeight}px` };
+  const CircularProgressStyles = {
+    minHeight: `${contentHeight}px`,
+    height: `${contentHeight}px`,
+  };
 
   const getcontentHeight = (node: HTMLElement) => {
     if (node && open) {
@@ -45,16 +49,7 @@ const ModalDialog = ({
       </Typography>
 
       <DialogContent ref={getcontentHeight} sx={DialogContentStyles}>
-        {open ? (
-          children
-        ) : (
-          <CircularProgress
-            sx={{
-              minHeight: `${contentHeight}px`,
-              height: `${contentHeight}px`,
-            }}
-          />
-        )}
+        {open ? children : <CircularProgress sx={CircularProgressStyles} />}
       </DialogContent>
 
       <DialogActions>
