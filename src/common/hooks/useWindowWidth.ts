@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Breakpoint, useTheme } from '@mui/material';
+import { useTheme } from '@mui/material';
 
 const useWindowWidth = () => {
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);

@@ -1,11 +1,4 @@
-import {
-  styled,
-  Stack,
-  Divider,
-  Paper,
-  Typography,
-  useTheme,
-} from '@mui/material';
+import { styled, Stack, Divider, Paper, Typography } from '@mui/material';
 import { createHeaderWrapperStyles, createPageCanvasStyles } from './styles';
 
 type PageLayoutProps = {
@@ -18,8 +11,6 @@ const PageCanvas = styled(Paper)(createPageCanvasStyles);
 const HeaderWrapper = styled(Stack)(createHeaderWrapperStyles);
 
 const PageLayout = ({ header, postfix, children }: PageLayoutProps) => {
-  const { spacing } = useTheme();
-
   return (
     <PageCanvas elevation={0}>
       <Stack spacing={2}>
