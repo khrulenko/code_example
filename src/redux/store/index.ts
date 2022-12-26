@@ -16,12 +16,15 @@ const createSelector =
 export const getIncomes = createSelector('incomes');
 export const getUser = createSelector('user');
 
+// redusers
+export const reducers = {
+  user: userReducer,
+  incomes: incomesReducer,
+};
+
 // store
 export const store = configureStore({
-  reducer: {
-    user: userReducer,
-    incomes: incomesReducer,
-  },
+  reducer: reducers,
 });
 
 export default store;
