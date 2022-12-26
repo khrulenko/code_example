@@ -20,3 +20,4 @@ Used technologies:
 - Material UI
 - Joi.dev (data validation)
 - Jest
+- React Testing Library
