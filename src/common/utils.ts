@@ -33,11 +33,9 @@ const handleChange =
     action(value);
   };
 
-const getShouldNotForvardRule = (...propNames: PropertyKey[]) => {
-  return {
-    shouldForwardProp: (prop: PropertyKey) => !propNames.includes(prop),
-  };
-};
+const getShouldNotForvardRule = (...propNames: PropertyKey[]) => ({
+  shouldForwardProp: (prop: PropertyKey) => !propNames.includes(prop),
+});
 
 const isObjEmpty = (object: object): boolean =>
   Object.keys(object).length === 0;
