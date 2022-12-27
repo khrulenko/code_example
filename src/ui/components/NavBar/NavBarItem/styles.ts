@@ -6,7 +6,7 @@ const createNavBarItemWrapperStyles: StyleFunction<NavBarItemWrapperProps> = ({
   theme: { spacing, palette, customShadows },
   isChosen,
 }) => ({
-  padding: spacing(1),
+  padding: '0',
 
   height: spacing(6),
 
@@ -16,7 +16,7 @@ const createNavBarItemWrapperStyles: StyleFunction<NavBarItemWrapperProps> = ({
 });
 
 const createRouterLinkStyles: StyleFunction<LinkProps> = ({
-  theme: { palette },
+  theme: { spacing, palette },
 }) => ({
   display: 'flex',
   flexDirection: 'row',
@@ -24,6 +24,8 @@ const createRouterLinkStyles: StyleFunction<LinkProps> = ({
 
   width: '100%',
   height: '100%',
+
+  padding: spacing(1),
 
   textDecoration: 'none',
   color: palette.primary.main,
