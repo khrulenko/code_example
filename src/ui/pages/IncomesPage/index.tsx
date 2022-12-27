@@ -49,9 +49,11 @@ const IncomesPage = () => {
   const areThereIncomes = incomes?.length;
 
   const postfix = (
-    <AddIncomeButton onClick={addingDialog.onOpen}>
-      <AddCircleRoundedIcon fontSize="large" />
-    </AddIncomeButton>
+    <Tooltip title="Add income" placement={tooltipPlacement}>
+      <AddIncomeButton onClick={addingDialog.onOpen}>
+        <AddCircleRoundedIcon fontSize="large" />
+      </AddIncomeButton>
+    </Tooltip>
   );
 
   const createHeaderCell = (header: string) => (
