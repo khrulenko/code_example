@@ -50,7 +50,10 @@ const IncomesPage = () => {
 
   const postfix = (
     <Tooltip title="Add income" placement={tooltipPlacement}>
-      <AddIncomeButton onClick={addingDialog.onOpen}>
+      <AddIncomeButton
+        data-testid="addIncomeButton"
+        onClick={addingDialog.onOpen}
+      >
         <AddCircleRoundedIcon fontSize="large" />
       </AddIncomeButton>
     </Tooltip>
@@ -71,6 +74,7 @@ const IncomesPage = () => {
           <Tooltip title="Edit" placement={tooltipPlacement} followCursor>
             <ActionButton
               variant="contained"
+              data-testid="editIncomeButton"
               onClick={() => {
                 chosenIncomeIdSet(id);
                 editingDialog.onOpen();
@@ -83,6 +87,7 @@ const IncomesPage = () => {
           <Tooltip title="Delete" placement={tooltipPlacement} followCursor>
             <ActionButton
               variant="contained"
+              data-testid="deleteIncomeButton"
               onClick={() => {
                 chosenIncomeIdSet(id);
                 deletingDialog.onOpen();
