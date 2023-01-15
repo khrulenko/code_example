@@ -25,6 +25,12 @@ const useIncomeFields = (defaultValues: UseIncomeFieldsArgs = empty) => {
   const [comment, commentSet] = useState<string>(defaultValues.comment);
   const [currency, currencySet] = useState<Currencies>(defaultValues.currency);
 
+  const amountProcessAndSet = (value: string) => {
+    const newValue = value.match(/^\d*\.?\d*$/);
+
+    if (newValue) amountSet(newValue[0]);
+  };
+
   const values = {
     amount,
     comment,
@@ -39,7 +45,7 @@ const useIncomeFields = (defaultValues: UseIncomeFieldsArgs = empty) => {
   const validation = useValidation(validationData, schema);
 
   const handlers = {
-    handleAmountChange: handleChange(amountSet),
+    handleAmountChange: handleChange(amountProcessAndSet),
     handleCommentChange: handleChange(commentSet),
     handleCurrencyChange: handleChange(currencySet),
   };

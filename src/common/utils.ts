@@ -1,3 +1,4 @@
+import { ChangeEvent } from 'react';
 import { FBUser } from '../redux/slices/userSlice';
 import { AnyFunction, StringObject } from './types';
 
@@ -29,7 +30,7 @@ const createUrl = (...pathes: string[]): string => pathes.join('/');
 
 const handleChange =
   (action: AnyFunction) =>
-  ({ target: { value } }: any) => {
+  ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
     action(value);
   };
 

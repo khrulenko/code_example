@@ -24,8 +24,10 @@ const IncomeFields = ({ values, handlers, validation }: IncomeFieldsProps) => {
 
   const errorProps = (key: string) => getErrorProps(key, validation);
 
-  const getStartAdornment = (title: string) => (
-    <InputAdornment position="start">{title}</InputAdornment>
+  const currencyStartAdornment = (
+    <InputAdornment position="start">
+      {CurrenciesSigns[currency]}
+    </InputAdornment>
   );
 
   return (
@@ -33,13 +35,13 @@ const IncomeFields = ({ values, handlers, validation }: IncomeFieldsProps) => {
       <TextField
         value={amount}
         label="amount"
-        type="number"
+        type="text"
         id="amount"
         size="small"
         onChange={handleAmountChange}
         {...errorProps('amount')}
         InputProps={{
-          startAdornment: getStartAdornment(CurrenciesSigns[currency]),
+          startAdornment: currencyStartAdornment,
         }}
       />
 
