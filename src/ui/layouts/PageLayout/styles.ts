@@ -2,12 +2,20 @@ import { PaperProps } from '@mui/material';
 import { StyleFunction } from '../../../common/types';
 
 const createPageCanvasStyles: StyleFunction<PaperProps> = ({
-  theme: { spacing },
+  theme: {
+    spacing,
+    breakpoints: { down },
+  },
 }) => ({
   width: '100%',
   padding: spacing(4),
 
   borderRadius: spacing(6),
+
+  [down('sm')]: {
+    paddingLeft: spacing(2),
+    paddingRight: spacing(2),
+  },
 });
 
 const createHeaderWrapperStyles: StyleFunction<PaperProps> = ({

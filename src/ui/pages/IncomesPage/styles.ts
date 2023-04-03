@@ -1,6 +1,7 @@
+import { ButtonProps, TableProps } from '@mui/material';
 import { StyleFunction } from '../../../common/types';
 
-const createAddIncomeButtonStyles: StyleFunction = ({
+const createAddIncomeButtonStyles: StyleFunction<ButtonProps> = ({
   theme: { palette, spacing },
 }) => ({
   alignItems: 'center',
@@ -16,7 +17,7 @@ const createAddIncomeButtonStyles: StyleFunction = ({
   },
 });
 
-const createIncomesTableStyles: StyleFunction = ({
+const createIncomesTableStyles: StyleFunction<TableProps> = ({
   theme: {
     breakpoints: { down },
   },
@@ -25,12 +26,14 @@ const createIncomesTableStyles: StyleFunction = ({
   display: 'table',
   overflowX: 'auto',
 
-  [down('ms')]: {
+  [down('xs')]: {
     display: 'block',
   },
 });
 
-const createActionButtonStyles: StyleFunction = ({ theme: { spacing } }) => ({
+const createActionButtonStyles: StyleFunction<ButtonProps> = ({
+  theme: { spacing },
+}) => ({
   width: spacing(5),
 });
 
