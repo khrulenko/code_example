@@ -25,10 +25,6 @@ const createIncomesTableStyles: StyleFunction<TableProps> = ({
   tableLayout: 'auto',
   display: 'table',
   overflowX: 'auto',
-
-  [down('xs')]: {
-    display: 'block',
-  },
 });
 
 const createActionButtonStyles: StyleFunction<ButtonProps> = ({
