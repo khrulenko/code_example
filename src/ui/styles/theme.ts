@@ -12,6 +12,12 @@ import MuiTableCell from './MuiComponents/MuiTableCell';
 // theme object structure:
 // https://mui.com/material-ui/customization/default-theme/
 
+declare module '@mui/material/styles' {
+  interface BreakpointOverrides {
+    ms: true;
+  }
+}
+
 type CustomThemeProps = {
   minModalContentHeight: 40;
   customShadows: string[];
