@@ -1,8 +1,9 @@
-import { PropsWithTheme } from '../../../common/types';
+import { ButtonProps } from '@mui/material';
+import { OwnerStateWithTheme } from '../../../common/types';
 
 const MuiButton = {
   styleOverrides: {
-    root: ({ theme: { spacing } }: PropsWithTheme) => ({
+    root: ({ theme: { spacing } }: OwnerStateWithTheme<ButtonProps>) => ({
       minWidth: spacing(3),
 
       borderRadius: spacing(2),

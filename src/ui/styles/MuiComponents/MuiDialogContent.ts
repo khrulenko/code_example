@@ -1,8 +1,9 @@
-import { PropsWithTheme } from '../../../common/types';
+import { DialogContentProps } from '@mui/material';
+import { OwnerStateWithTheme } from '../../../common/types';
 
 const MuiDialogContent = {
   styleOverrides: {
-    root: ({}: PropsWithTheme) => ({
+    root: ({}: OwnerStateWithTheme<DialogContentProps>) => ({
       display: 'flex',
       justifyContent: 'center',
 

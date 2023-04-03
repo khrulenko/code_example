@@ -1,11 +1,12 @@
-import { PropsWithTheme } from '../../../common/types';
+import { DialogProps } from '@mui/material';
+import { OwnerStateWithTheme } from '../../../common/types';
 
 const MuiDialog = {
   defaultProps: {
     fullWidth: true,
   },
   styleOverrides: {
-    root: ({ theme: { spacing } }: PropsWithTheme) => ({
+    root: ({ theme: { spacing } }: OwnerStateWithTheme<DialogProps>) => ({
       '& .MuiDialog-paper': {
         padding: spacing(2),
 

@@ -1,8 +1,9 @@
-import { PropsWithTheme } from '../../../common/types';
+import { TextFieldProps } from '@mui/material';
+import { OwnerStateWithTheme } from '../../../common/types';
 
 const MuiTextField = {
   styleOverrides: {
-    root: ({ theme }: PropsWithTheme) => ({
+    root: ({ theme }: OwnerStateWithTheme<TextFieldProps>) => ({
       '& .MuiOutlinedInput-root': {
         borderRadius: theme.spacing(3),
       },

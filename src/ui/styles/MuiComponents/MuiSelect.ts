@@ -1,8 +1,9 @@
-import { PropsWithTheme } from '../../../common/types';
+import { SelectProps } from '@mui/material';
+import { OwnerStateWithTheme } from '../../../common/types';
 
 const MuiSelect = {
   styleOverrides: {
-    root: ({ theme: { spacing } }: PropsWithTheme) => ({
+    root: ({ theme: { spacing } }: OwnerStateWithTheme<SelectProps>) => ({
       borderRadius: spacing(3),
     }),
   },

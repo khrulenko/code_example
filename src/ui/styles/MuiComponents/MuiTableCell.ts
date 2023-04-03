@@ -1,8 +1,9 @@
-import { PropsWithTheme } from '../../../common/types';
+import { TableCellProps } from '@mui/material';
+import { OwnerStateWithTheme } from '../../../common/types';
 
 const MuiTableCell = {
   styleOverrides: {
-    root: ({ theme: { spacing } }: PropsWithTheme) => ({
+    root: ({ theme: { spacing } }: OwnerStateWithTheme<TableCellProps>) => ({
       maxWidth: spacing(12),
       whiteSpace: 'normal',
       wordWrap: 'break-word',
