@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import incomesReducer, { IncomesData } from '../slices/incomesSlice';
 import userReducer, { UserData } from '../slices/userSlice';
 
-interface State {
+export interface State {
   user: UserData;
   incomes: IncomesData;
 }

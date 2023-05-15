@@ -8,13 +8,14 @@ import {
   mockedIncomes,
 } from '../../../common/mocks';
 import { renderWithRedux } from '../../../common/testUtils';
+import { State } from '../../../redux/store';
 
-const emptyIncomesState = {
+const emptyIncomesState: State = {
   user: mockedUser,
   incomes: mockedEmptyIncomes,
 };
 
-const loadedIncomesState = {
+const loadedIncomesState: State = {
   user: mockedUser,
   incomes: mockedIncomes,
 };
