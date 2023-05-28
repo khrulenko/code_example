@@ -1,3 +1,5 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   Button,
   Stack,
@@ -7,13 +9,13 @@ import {
   Tooltip,
 } from '@mui/material';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import useAuth from '../../../../firebase/useAuth';
-import { useSelector } from 'react-redux';
 import { getUser } from '../../../../redux/store';
 import {
   createUserPanelWrapperStyles,
   createLogOutButtonStyles,
 } from './styles';
+import { AppDispatch } from '../../../../common/types';
+import { logOut } from '../../../../firebase/thunkAuth';
 
 export interface UserPanelProps {
   open?: boolean;
@@ -26,7 +28,8 @@ const LogOutButton = styled(Button)(createLogOutButtonStyles);
 
 const UserPanel = ({ open = true }: UserPanelProps) => {
   const user = useSelector(getUser);
-  const { logOut } = useAuth();
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   const logOutButtonText = 'log out';
   const userName = open ? user.email : user.email?.slice(0, 1);
@@ -40,7 +43,7 @@ const UserPanel = ({ open = true }: UserPanelProps) => {
       <LogOutButton
         variant="contained"
         disableElevation
-        onClick={() => logOut()}
+        onClick={() => dispatch(logOut(navigate))}
       >
         {open ? (
           <>

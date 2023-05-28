@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Button, Stack, TextField, Typography } from '@mui/material';
 import {
@@ -7,19 +8,19 @@ import {
   isObjEmpty,
   getDeleteCallback,
 } from '../../../../common/utils';
-import useAuth from '../../../../firebase/useAuth';
 import { URL_AUTH_REGISTRATION } from '../../../../routing/URLs';
 import NoWrap from '../../../components/NoWrap';
 import useValidation from '../../../../common/hooks/useValidation';
-import { StringObject } from '../../../../common/types';
+import { AppDispatch, StringObject } from '../../../../common/types';
 import schema from './schema';
+import { logIn } from '../../../../firebase/thunkAuth';
 
 const LoginPage = () => {
   const [email, emailSet] = useState<string>('');
   const [password, passwordSet] = useState<string>('');
   const [errors, errorsSet] = useState<StringObject>({});
 
-  const { logIn } = useAuth();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const handleEmailChange = handleChange(emailSet);
@@ -49,7 +50,7 @@ const LoginPage = () => {
       return;
     }
 
-    logIn(email, password);
+    dispatch(logIn({ email, password, navigate }));
   };
 
   return (

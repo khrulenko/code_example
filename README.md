@@ -14,6 +14,7 @@ Used technologies:
   - router-dom
 - Redux
   - toolkit
+  - thunk
 - Firebase
   - auth
   - firestore

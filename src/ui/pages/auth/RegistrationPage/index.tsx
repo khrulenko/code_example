@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Stack, Typography, TextField, Button } from '@mui/material';
 import {
@@ -7,15 +8,15 @@ import {
   isObjEmpty,
   getDeleteCallback,
 } from '../../../../common/utils';
-import useAuth from '../../../../firebase/useAuth';
 import { URL_AUTH_LOGIN } from '../../../../routing/URLs';
 import NoWrap from '../../../components/NoWrap';
 import useValidation from '../../../../common/hooks/useValidation';
 import schema from './schema';
-import { StringObject } from '../../../../common/types';
+import { AppDispatch, StringObject } from '../../../../common/types';
+import { createUser } from '../../../../firebase/thunkAuth';
 
 const RegistrationPage = () => {
-  const { createUser } = useAuth();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const [email, emailSet] = useState<string>('');
@@ -57,7 +58,7 @@ const RegistrationPage = () => {
       return;
     }
 
-    createUser(email, password);
+    dispatch(createUser({ email, password }));
   };
 
   return (

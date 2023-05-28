@@ -6,6 +6,7 @@ const mockedUser: UserData = {
   uid: '123456789',
   email: 'user.test@gmail.com',
   loading: false,
+  error: false,
 };
 
 const mockedEmptyIncomes: IncomesData = {
