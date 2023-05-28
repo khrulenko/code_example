@@ -1,3 +1,5 @@
+import { blueGrey } from '@mui/material/colors';
+
 const MuiTableRow = {
   styleOverrides: {
     root: () => ({
@@ -6,6 +8,7 @@ const MuiTableRow = {
       },
 
       '&:hover': {
+        backgroundColor: blueGrey[50],
         button: {
           visibility: 'visible',
         },

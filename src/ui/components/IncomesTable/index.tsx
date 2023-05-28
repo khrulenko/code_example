@@ -23,6 +23,7 @@ import { getDateFromISO } from '../../../common/utils';
 import { Income } from '../../../redux/slices/incomesSlice';
 import { getIncomes } from '../../../redux/store';
 import useDisclosure from '../../../common/hooks/useDisclosure';
+import CurrencyChip from '../CurrencyChip';
 
 const IncomesTableWrapper = styled(Table)(createIncomesTableWrapperStyles);
 const ActionButton = styled(Button)(createActionButtonStyles);
@@ -41,7 +42,9 @@ const IncomesTable = () => {
     <TableRow key={id}>
       <TableCell>{getDateFromISO(date)}</TableCell>
       <TableCell>{amount}</TableCell>
-      <TableCell>{currency}</TableCell>
+      <TableCell>
+        <CurrencyChip label={currency} />
+      </TableCell>
       <TableCell>{comment}</TableCell>
       <TableCell>
         <Stack spacing={1} direction="row" justifyContent="center">

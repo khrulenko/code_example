@@ -9,15 +9,10 @@ import MuiDialogContent from './MuiComponents/MuiDialogContent';
 import MuiSelect from './MuiComponents/MuiSelect';
 import MuiTableCell from './MuiComponents/MuiTableCell';
 import MuiTableRow from './MuiComponents/MuiTableRow';
+import { CurrencyColors } from '../../common/types';
 
 // theme object structure:
 // https://mui.com/material-ui/customization/default-theme/
-
-declare module '@mui/material/styles' {
-  interface BreakpointOverrides {
-    ms: true;
-  }
-}
 
 type CustomThemeProps = {
   minModalContentHeight: number;
@@ -29,6 +24,21 @@ type CustomThemeProps = {
     };
   };
 };
+
+declare module '@mui/material/styles' {
+  interface BreakpointOverrides {
+    ms: true;
+  }
+}
+
+declare module '@mui/material/styles' {
+  interface Palette {
+    currencies: CurrencyColors;
+  }
+  interface PaletteOptions {
+    currencies?: CurrencyColors;
+  }
+}
 
 declare module '@mui/material/' {
   interface Theme extends CustomThemeProps {}
@@ -44,6 +54,11 @@ const palette = {
     contrastText: '#fff',
   },
   secondary: blueGrey,
+  currencies: {
+    UAH: '#F7E1AE',
+    EUR: '#ACBCFF',
+    USD: '#A0D8B3',
+  },
 };
 const breakpoints = {
   values: {
