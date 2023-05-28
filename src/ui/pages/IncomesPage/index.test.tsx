@@ -7,7 +7,7 @@ import {
   mockedEmptyIncomes,
   mockedIncomes,
 } from '../../../common/mocks';
-import { renderWithRedux } from '../../../common/testUtils';
+import { renderWithProviders } from '../../../common/testUtils';
 import { State } from '../../../redux/store';
 
 const emptyIncomesState: State = {
@@ -22,7 +22,7 @@ const loadedIncomesState: State = {
 
 describe('IncomesPage', () => {
   test('shows "create income" modal after click on "add income" button', () => {
-    renderWithRedux(<IncomesPage />, { initialState: emptyIncomesState });
+    renderWithProviders(<IncomesPage />, { initialState: emptyIncomesState });
 
     const addIncomeButton = screen.getByTestId('addIncomeButton');
 
@@ -34,7 +34,7 @@ describe('IncomesPage', () => {
 
   describe('if there are no incomes', () => {
     test('shows "no incomes" allert ', () => {
-      renderWithRedux(<IncomesPage />, { initialState: emptyIncomesState });
+      renderWithProviders(<IncomesPage />, { initialState: emptyIncomesState });
       const noIncomesAllert = screen.getByText(/there are no incomes/i);
 
       expect(noIncomesAllert).toBeInTheDocument();
@@ -43,7 +43,7 @@ describe('IncomesPage', () => {
 
   describe('if there are incomes', () => {
     beforeEach(() =>
-      renderWithRedux(<IncomesPage />, {
+      renderWithProviders(<IncomesPage />, {
         initialState: loadedIncomesState,
       })
     );

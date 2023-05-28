@@ -29,12 +29,11 @@ declare module '@mui/material/styles' {
   interface BreakpointOverrides {
     ms: true;
   }
-}
 
-declare module '@mui/material/styles' {
   interface Palette {
     currencies: CurrencyColors;
   }
+
   interface PaletteOptions {
     currencies?: CurrencyColors;
   }
