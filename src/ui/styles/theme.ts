@@ -8,6 +8,7 @@ import MuiDialog from './MuiComponents/MuiDialog';
 import MuiDialogContent from './MuiComponents/MuiDialogContent';
 import MuiSelect from './MuiComponents/MuiSelect';
 import MuiTableCell from './MuiComponents/MuiTableCell';
+import MuiTableRow from './MuiComponents/MuiTableRow';
 
 // theme object structure:
 // https://mui.com/material-ui/customization/default-theme/
@@ -19,7 +20,7 @@ declare module '@mui/material/styles' {
 }
 
 type CustomThemeProps = {
-  minModalContentHeight: 40;
+  minModalContentHeight: number;
   customShadows: string[];
   navBarSizes: {
     width: {
@@ -74,6 +75,7 @@ const theme = createTheme({
     MuiDialogContent,
     MuiSelect,
     MuiTableCell,
+    MuiTableRow,
   },
   customShadows,
   navBarSizes,
