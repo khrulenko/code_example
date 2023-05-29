@@ -7,27 +7,31 @@ import AppRoutes from './routing/Routes';
 import { endLoadingUser, setUser } from './redux/slices/userSlice';
 import { getUserData } from './common/utils';
 import { auth } from './firebase/firebaseInit';
+import Loader from './ui/components/Loader';
+import { startLoadingIncomes } from './redux/slices/incomesSlice';
 
 const App = () => {
   const dispatch = useDispatch();
-  const { uid } = useSelector(getUser);
+  const { uid, loading } = useSelector(getUser);
   const { listenToIncomesChanges } = useManageData();
-  const isUserLoggedIn = !!uid;
 
   useEffect(() => {
     const unsubscribe = listenToIncomesChanges();
 
     return unsubscribe;
-  }, [isUserLoggedIn]);
+  }, [uid]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       dispatch(setUser(getUserData(user)));
+      dispatch(startLoadingIncomes());
       dispatch(endLoadingUser());
     });
 
     return unsubscribe;
   }, []);
+
+  if (loading) return <Loader />;
 
   return <AppRoutes />;
 };

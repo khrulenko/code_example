@@ -52,8 +52,8 @@ const logIn = createAsyncThunk(
 const logOut = createAsyncThunk(
   'user/logOut',
   async (navigate: NavigateFunction) => {
-    signOut(auth);
-    navigate(URL_AUTH_LOGIN);
+    await signOut(auth);
+    navigate(URL_AUTH_LOGIN, { replace: true });
   }
 );
 
